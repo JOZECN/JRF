@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/jrf', {useMongoClient:true}, functio
   if(err){
     console.log('mongodb connect failed!');
   }else{
-    console.log('mongodb connect success');
+    console.log('mongodb connect success!');
     app.listen(3000);
   }
 });
