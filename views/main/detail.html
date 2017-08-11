@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<style type="text/css">
+    .main_header {
+        opacity: 1;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.93);
+    }
+    .product-main {
+        margin-top: 80px;
+    }
+    .product-img img{
+        width: 100%;
+    }
+    .work_area {
+        margin-top: 20px;
+    }
+    .work_section {
+        margin: 0;
+    }
+    .bs-example {
+        margin: 0;
+    }
+    .nav-tabs {
+        background-color: #f7f7f7;
+    }
+</style>
+<div class="row product-main">
+    <div class="col-sm-12 wow bounceInLeft">
+        <div class="col-sm-3" style="padding: 0">
+            <div class="product-img">
+                <img src="../../public/img/1.jpg">
+            </div>
+        </div>
+        <div class="col-sm-9" style="padding: 0">
+            <div class="product-detail">
+                <div class="product-detail-name"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="work_area">
+            <div class="work_section">
+                <div class="col-md-12 wow bounceInRight animated" style="padding: 0;">
+                    <div class="bs-example">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#sectionA"><i class="icon-camera"></i>行业资讯</a></li>
+                            <li><a data-toggle="tab" href="#sectionB"><i class="icon-camera"></i>企业动态</a></li>
+                            <li><a data-toggle="tab" href="#sectionC"><i class="icon-camera"></i>媒体报道</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="sectionA" class="tab-pane fade in active">
+
+                            </div>
+                            <div id="sectionB" class="tab-pane fade">
+
+                            </div>
+                            <div id="sectionC" class="tab-pane fade">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

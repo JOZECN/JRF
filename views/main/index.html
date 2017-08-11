@@ -1,10 +1,441 @@
 {% extends 'layout.html' %}
 
+{% block slide %}
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="5000" id="bs-carousel">
+    <!-- Overlay -->
+    <!--<div class="overlay"></div>-->
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#bs-carousel" data-slide-to="1"></li>
+        <li data-target="#bs-carousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item slides active">
+            <div class="slide-1" style="background-image: url(../../public/img/photo-01.jpg);"></div>
+            <div class="hero">
+                <h1><span>开信财富</span></h1>
+                <h3>深圳前海开信财富管理有限公司</h3>
+                <button class="btn btn-hero btn-lg" role="button">了解更多</button>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-2" style="background-image: url(../../public/img/photo-02.jpg);"></div>
+            <div class="hero">
+                <h1><span>开信财富</span></h1>
+                <h3>深圳前海开信财富管理有限公司</h3>
+                <button class="btn btn-hero btn-lg" role="button">了解更多</button>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-3" style="background-image: url(../../public/img/photo-03.jpg);"></div>
+            <div class="hero">
+                <h1><span>开信财富</span></h1>
+                <h3>深圳前海开信财富管理有限公司</h3>
+                <button class="btn btn-hero btn-lg" role="button">了解更多</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block main %}
-<div style="margin-top: 60px;width: 100%;height: 2000px;">test</div>
-<h1>index</h1>
+<div class="row wow bounceInRight" style="padding: 0;">
+    <div class="col-sm-4 hot-recommand">
+        <img src="../../public/img/1.jpg" alt="">
+        <div class="hot-recommand-cover">
+            <h2>投资产品</h2>
+            <span>XXXXXXXXXXXXXXXXXXXXXXX</span>
+        </div>
+    </div>
+    <div class="col-sm-4 hot-recommand">
+        <img src="../../public/img/2.jpg" alt="">
+        <div class="hot-recommand-cover">
+            <h2>保险产品</h2>
+            <span>XXXXXXXXXXXXXXXXXXXXXXX</span>
+        </div>
+    </div>
+    <div class="col-sm-4 hot-recommand">
+        <img src="../../public/img/3.jpg" alt="">
+        <div class="hot-recommand-cover">
+            <h2>开信海外</h2>
+            <span>XXXXXXXXXXXXXXXXXXXXXXX</span>
+        </div>
+    </div>
+</div>
+<style rel="stylesheet" type="text/css">
+    .hot-recommand {
+        padding: 0;
+        overflow: hidden;
+    }
+    .hot-recommand img {
+        width: 100%;
+        height: auto;
+    }
+    .hot-recommand-cover {
+        width: 100%;
+        height: 50%;
+        background-color: rgba(17, 17, 17, 0.5);
+        color: #FFFFFF;
+        position: absolute;
+        top: 80%;
+    }
+    .hot-recommand-cover h2 {
+        color: #ffffff;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+      $('.hot-recommand').hover(function () {
+        $(this).children('.hot-recommand-cover').animate({top: '50%'}, "slow");
+      },function () {
+        $(this).children('.hot-recommand-cover').animate({top: '80%'}, "slow");
+      })
+    })
+</script>
+
+<div class="getit_area">
+    <div class="container">
+        <div class="row">
+            <div class="getit_section">
+                <h1>掌握金融行业动态，把握市场机会</h1>
+            </div>
+        </div>
+    </div>
+</div><!--  getit area end -->
+
+<div class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="blog_section">
+                <h1>您的随身 <span>理财顾问</span></h1>
+                <div class="single_blog col-md-4 slider-content">
+                    <a href="#">
+                        <img src="../../public/img/1.jpg" alt="">
+                        <div class="slider-text">
+                            <h3>财富创造</h3>
+                            <p>理财顾问通过投资规划为您制定合适的资产配置组合方案，确定在各大类投资产品中的最优投资比例，以降低风险提高收益，实现财富增值。</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="single_blog col-md-4 slider-content">
+                    <a href="#">
+                        <img src="../../public/img/2.jpg" alt="">
+                        <div class="slider-text">
+                            <h3>财富保全</h3>
+                            <p>理财顾问通过保险资规划帮您确定家庭的保险需求，以及在各险种之间的合理配置，并明确具体保额，以转移风险，保全资产。</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="single_blog col-md-4 slider-content">
+                    <a href="#">
+                        <img src="../../public/img/3.jpg" alt="">
+                        <div class="slider-text">
+                            <h3>财富传承</h3>
+                            <p>理财顾问利用信托、保险、遗嘱等传承工具提供具体的财富传承建议。并通过子女教育规划& 养老规划为您的理财目标提供具体建议。</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- blog area end   -->
+
+<div class="work_area">
+    <div class="container">
+        <div class="row">
+            <div class="work_section">
+                <h1 class="wow bounceInLeft">财富 <span>产业资讯</span></h1>
+                <div class="col-md-12 wow bounceInRight animated">
+                    <div class="bs-example">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#sectionA"><i class="icon-camera"></i>行业资讯</a></li>
+                            <li><a data-toggle="tab" href="#sectionB"><i class="icon-camera"></i>企业动态</a></li>
+                            <li><a data-toggle="tab" href="#sectionC"><i class="icon-camera"></i>媒体报道</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="sectionA" class="tab-pane fade in active">
+                                <ul class="new-list">
+                                    <li class="new-list-item"><a href="#">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="sectionB" class="tab-pane fade">
+                                <ul class="new-list">
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="sectionC" class="tab-pane fade">
+                                <ul class="new-list">
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                    <li class="new-list-item"><a href="#">
+                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
+                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- work area end   -->
+<style type="text/css">
+    .work_area .tab-content .new-list {
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+    .work_area .tab-content .new-list .new-list-item {
+        list-style: none;
+        width: 100%;
+        font-size: 18px;
+    }
+    .work_area .tab-content .new-list a {
+        display: block;
+        padding: 15px 0;
+    }
+    .work_area .tab-content .new-list a:hover {
+        color: #da7464;
+    }
+    .work_area .tab-content .new-list .new-list-item i {
+        margin-right: 5px;
+        font-size: 20px;
+    }
+    .work_area .tab-content .new-list .new-list-item .new-title {
+
+    }
+    .work_area .tab-content .new-list .new-list-item .new-data {
+        float: right;
+    }
+</style>
+
+
+<div class="row market">
+    <div class="col-sm-12 market-session-title">
+        <h1>金融 <span>动态指数</span></h1>
+    </div>
+    <div class="col-sm-4 shares">
+        <div class="shares-block">
+            <img src="http://image.sinajs.cn/newchart/daily/n/sh000001.gif" alt="">
+            <div class="market-data data1">
+                <p class="market-name">上证指数</p>
+                <p>当前指数：<span class="market-current-point"></span></p>
+                <p>当前价格：<span class="market-current-price"></span></p>
+                <p>涨跌率：<span class="market-current-rate"></span></p>
+                <p>成交量：<span class="market-current-volume"></span></p>
+                <p>成交额：<span class="market-current-turnover"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 shares">
+        <div class="shares-block">
+            <img src="http://image.sinajs.cn/newchart/daily/n/sz399001.gif" alt="">
+            <div class="market-data data2">
+                <p class="market-name">深圳指数</p>
+                <p>当前指数：<span class="market-current-point"></span></p>
+                <p>当前价格：<span class="market-current-price"></span></p>
+                <p>涨跌率：<span class="market-current-rate"></span></p>
+                <p>成交量：<span class="market-current-volume"></span></p>
+                <p>成交额：<span class="market-current-turnover"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 shares">
+        <div class="shares-block">
+            <img src="http://image.sinajs.cn/newchart/daily/n/sh513500.gif" alt="">
+            <div class="market-data data3">
+                <p class="market-name">标普500</p>
+                <p>当前指数：<span class="market-current-point"></span></p>
+                <p>当前价格：<span class="market-current-price"></span></p>
+                <p>涨跌率：<span class="market-current-rate"></span></p>
+                <p>成交量：<span class="market-current-volume"></span></p>
+                <p>成交额：<span class="market-current-turnover"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<style rel="stylesheet" type="text/css">
+    .market-session-title h1 {
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .market-session-title span {
+        color: #e95a44;
+    }
+    .shares {
+        padding: 15px;
+    }
+    .shares img {
+        width: 100%;
+        height: auto;
+        background-color: #ffffff;
+    }
+    .shares-block {
+        width: 100%;
+        background-color: #F5F6FA;
+        transition: all .5s ease-in-out;
+    }
+    .shares-block:hover {
+        color: #F5F6FA;
+        background-color: #e95a44;
+    }
+    .shares-block .market-data {
+        padding: 10px 40px;
+        text-align: left;
+        display: block;
+    }
+    .shares-block .market-data p {
+        margin-top: 10px;
+    }
+    .shares-block .market-data span {
+        margin: 0;
+        float: right;
+    }
+    .shares-block .market-name {
+        font-size: 20px;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript" src="http://hq.sinajs.cn/list=s_sh000001" charset="gb2312">
+</script>
+<script type="text/javascript">
+  var elements=hq_str_s_sh000001.split(",");
+  $('.shares-block .data1 .market-current-point').text(elements[1]);
+  $('.shares-block .data1 .market-current-price').text(elements[2]);
+  $('.shares-block .data1 .market-current-rate').text(elements[3]);
+  $('.shares-block .data1 .market-current-volume').text(elements[4]);
+  $('.shares-block .data1 .market-current-turnover').text(elements[5]);
+</script>
+
+<script type="text/javascript" src="http://hq.sinajs.cn/list=s_sz399001" charset="gb2312">
+</script>
+<script type="text/javascript">
+  var elements=hq_str_s_sz399001.split(",");
+  $('.shares-block .data2 .market-current-point').text(elements[1]);
+  $('.shares-block .data2 .market-current-price').text(elements[2]);
+  $('.shares-block .data2 .market-current-rate').text(elements[3]);
+  $('.shares-block .data2 .market-current-volume').text(elements[4]);
+  $('.shares-block .data2 .market-current-turnover').text(elements[5]);
+</script>
+
+<script type="text/javascript" src="http://hq.sinajs.cn/list=s_sh513500" charset="gb2312">
+</script>
+<script type="text/javascript">
+  var elements=hq_str_s_sh513500.split(",");
+  $('.shares-block .data3 .market-current-point').text(elements[1]);
+  $('.shares-block .data3 .market-current-price').text(elements[2]);
+  $('.shares-block .data3 .market-current-rate').text(elements[3]);
+  $('.shares-block .data3 .market-current-volume').text(elements[4]);
+  $('.shares-block .data3 .market-current-turnover').text(elements[5]);
+</script>
+
+
+<div class="testimonial_area">
+    <div class="container">
+        <div class="row">
+            <div class="testimonial_section">
+                <h1>关于 <span>金融坊</span></h1>
+                <div id="testimonial_carosule" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <blockquote>
+                            <!--<img src="http://image.sinajs.cn/newchart/daily/n/sh000001.gif">-->
+                            <h2>平台简介</h2>
+                            <p>
+                                金融坊理财（www.jrfp2f.com）是广州开银投资咨询有限公司旗下的互联网金融平台，是国内领先的个人对个人借贷、理财平台，以个人对个人（P2P），个人对金融机构（P2F）的方式解决借贷双方的借款需求及理财需求。
+                            </p>
+                        </blockquote>
+                    </div>
+                    <div class="item">
+                        <blockquote>
+                            <!--<img src="../../public/img/tm1.png">-->
+                            <h2>平台原理</h2>
+                        </blockquote>
+                    </div>
+                    <div class="item">
+                        <blockquote>
+                            <!--<img src="../../public/img/tm1.png">-->
+                            <h2>投资费率</h2>
+                            <p>
+                                账户管理费
+                                对于投资用户，免收管理费。
+                                充值提现费用（由第三方平台收取）
+                                对于投资用户，免收管理费，相关费用由平台承担。
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- testimonial area end   -->
+
 {% endblock %}
 
 {% block footer %}
-{%include 'footer.html'%}
+{%include 'footer.html' %}
 {% endblock %}

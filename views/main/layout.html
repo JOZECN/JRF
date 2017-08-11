@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>金融坊</title>
     <link href="../../public/css/normalize.css" rel="stylesheet" type="text/css" />
-    <link href="../../public/css/style.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../../public/css/animate.css" rel="stylesheet" type="text/css" />
     <link href="../../public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../../public/css/font-awesome.min.css">
     <!--[if IE 7]>
@@ -16,195 +16,94 @@
     <script src="../../public/js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="../../public/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <link href="../../public/font/FontAwesome.otf">
-    <link href="../../public/font/fontawesome-webfont.eot">
-    <link href="../../public/font/fontawesome-webfont.svg">
-    <link href="../../public/font/fontawesome-webfont.ttf">
-    <link href="../../public/font/fontawesome-webfont.woff">
-
     <script src="../../public/js/sweet-alert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="../../public/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/owl.transitions.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="../../public/style.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../../public/css/nav_style.css">
+    <link rel="stylesheet" href="../../public/css/ionicons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
+    <script src="../../public/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<div class="container" style="width: 100%;padding: 0;">
-    <div class="row clearfix">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="align-content: center;">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/" style="padding: 15px 0px 0px 15px;font-size: 30px;cursor: pointer;">JRF</a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-right navbar-nav">
-                        <li>
-                            <a href="/">首页</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">理财产品<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
-                                    <a href="">投资产品</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="">开信热销</a>
-                                        </li>
-                                        <li>
-                                            <a href="">固定收益</a>
-                                        </li>
-                                        <li>
-                                            <a href="">浮动收益</a>
-                                        </li>
-                                        <li>
-                                            <a href="">短期理财</a>
-                                        </li>
-                                        <li>
-                                            <a href="">另类投资</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="">保险产品</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="">医疗险</a>
-                                        </li>
-                                        <li>
-                                            <a href="">寿险</a>
-                                        </li>
-                                        <li>
-                                            <a href="">年金险</a>
-                                        </li>
-                                        <li>
-                                            <a href="">意外险</a>
-                                        </li>
-                                        <li>
-                                            <a href="">重疾险</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">开信海外<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="">海外医疗</a>
-                                </li>
-                                <li>
-                                    <a href="">海外房产</a>
-                                </li>
-                                <li>
-                                    <a href="">海外投资</a>
-                                </li>
-                                <li>
-                                    <a href="">海外移民</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的开信<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="">我的账户</a>
-                                </li>
-                                <li>
-                                    <a href="">我的消息</a>
-                                </li>
-                                <li>
-                                    <a href="">我的理财顾问</a>
-                                </li>
-                                <li>
-                                    <a href="">交易记录</a>
-                                </li>
-                                <li>
-                                    <a href="">账户安全</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">关于开信</a>
-                        </li>
-                    </ul>
-                </div>
+<header class="main_header">
+    <div class="row">
+        <div class="menu-container">
+            <div class="menu">
+                <ul>
+                    <li><a href="/" style="padding: 0;line-height: 60px;"><img src="../../public/img/logo.jpg" style="height: 50px;width: auto;"><span style="margin-left: 10px;font-size: 25px;font-weight: 600;line-height: 60px;color: #e95a44;vertical-align: middle;">开信财富</span></a></li>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/product">理财产品</a>
+                        <ul>
+                            <li><a href="#">投资产品</a>
+                                <ul>
+                                    <li><a href="">开信热销</a></li>
+                                    <li><a href="">固定收益</a></li>
+                                    <li><a href="">浮动收益</a></li>
+                                    <li><a href="">短期理财</a></li>
+                                    <li><a href="">另类投资</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">保险产品</a>
+                                <ul>
+                                    <li><a href="">医疗险</a></li>
+                                    <li><a href="">寿险</a></li>
+                                    <li><a href="">年金险</a></li>
+                                    <li><a href="">意外险</a></li>
+                                    <li><a href="">重疾险</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">开信海外</a>
+                        <ul>
+                            <li><a href="">海外医疗</a></li>
+                            <li><a href="">海外房产</a></li>
+                            <li><a href="">海外投资</a></li>
+                            <li><a href="">海外移民</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">我的开信</a>
+                        <ul>
+                            <li><a href="">我的账户</a></li>
+                            <li><a href="">我的消息</a></li>
+                            <li><a href="">我的理财顾问</a></li>
+                            <li><a href="">交易记录</a></li>
+                            <li><a href="">账户安全</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">关于开信</a></li>
+                </ul>
             </div>
-        </nav>
-        {% block slide %}{% endblock %}
-    </div>
-    <div class="row clearfix main-content">
-        <div class="col-md-12 column">
-            {% block main %}{% endblock %}
         </div>
+        <script src="../../public/js/megamenu.js"></script>
     </div>
-    <div class="row clearfix footer">
-        <div class="col-md-12 column">
-            {% block footer %}{% endblock %}
-        </div>
-    </div>
-</div>
+    <!-- END row -->
+</header>
+
+{% block slide %}{% endblock %}
+{% block main %}{% endblock %}
+{% block footer %}{% endblock %}
+
 </body>
-<style type="text/css">
-    .dropdown-submenu {
-        position: relative;
-    }
-
-    .dropdown-submenu>.dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: -6px;
-        margin-left: -1px;
-        -webkit-border-radius: 0 6px 6px 6px;
-        -moz-border-radius: 0 6px 6px;
-        border-radius: 0 6px 6px 6px;
-    }
-
-    .dropdown-submenu:hover>.dropdown-menu {
-        display: block;
-    }
-
-    .dropdown-submenu>a:after {
-        display: block;
-        content: " ";
-        float: right;
-        width: 0;
-        height: 0;
-        border-color: transparent;
-        border-style: solid;
-        border-width: 5px 0 5px 5px;
-        border-left-color: #ccc;
-        margin-top: 5px;
-        margin-right: -10px;
-    }
-
-    .dropdown-submenu:hover>a:after {
-        border-left-color: #fff;
-    }
-
-    .dropdown-submenu.pull-left {
-        float: none;
-    }
-
-    .dropdown-submenu.pull-left>.dropdown-menu {
-        left: -100%;
-        margin-left: 10px;
-        -webkit-border-radius: 6px 0 6px 6px;
-        -moz-border-radius: 6px 0 6px 6px;
-        border-radius: 6px 0 6px 6px;
-    }
-</style>
-<script type="text/javascript">
-  $(function(){
-    $(".dropdown").hover(function(){
-      $(this).addClass("open");
-    },function(){
-      $(this).removeClass("open");
-    });
-  });
-</script>
+<script src="../../public/js/wow.js"></script>
+<script src="../../public/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="../../public/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../../public/js/jquery.mixitup.min.js"></script>
+<script src="../../public/js/imagesloaded.pkgd.min.js"></script>
+<script src="../../public/js/owl.carousel.js"></script>
+<script src="../../public/js/scrollupto.js"></script>
+<script type="text/javascript" src="../../public/js/main.js"></script>
 </html>
