@@ -1,0 +1,349 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<!--external css-->
+<link href="../../public/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="../../public/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="../../public/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../public/css/owl.carousel.css" type="text/css">
+<!-- Custom styles for this template -->
+<link href="../../public/css/admin/style.css" rel="stylesheet">
+<link href="../../public/css/admin/style-responsive.css" rel="stylesheet" />
+{% endblock %}
+
+{% block main %}
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+          <!--state overview start-->
+          <div class="row state-overview">
+              <div class="col-lg-3 col-sm-6">
+                  <section class="panel">
+                      <div class="symbol terques">
+                          <i class="icon-user"></i>
+                      </div>
+                      <div class="value">
+                          <h1>22</h1>
+                          <p>新用户</p>
+                      </div>
+                  </section>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                  <section class="panel">
+                      <div class="symbol red">
+                          <i class="icon-tags"></i>
+                      </div>
+                      <div class="value">
+                          <h1>140</h1>
+                          <p>已销售</p>
+                      </div>
+                  </section>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                  <section class="panel">
+                      <div class="symbol yellow">
+                          <i class="icon-shopping-cart"></i>
+                      </div>
+                      <div class="value">
+                          <h1>345</h1>
+                          <p>新订单</p>
+                      </div>
+                  </section>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                  <section class="panel">
+                      <div class="symbol blue">
+                          <i class="icon-bar-chart"></i>
+                      </div>
+                      <div class="value">
+                          <h1>34,500</h1>
+                          <p>总收益</p>
+                      </div>
+                  </section>
+              </div>
+          </div>
+          <!--state overview end-->
+
+          <div class="row">
+              <div class="col-lg-8">
+                  <!--custom chart start-->
+                  <div class="border-head">
+                      <h3>收入 直方图</h3>
+                  </div>
+                  <div class="custom-bar-chart">
+                      <div class="bar">
+                          <div class="title">JAN</div>
+                          <div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
+                      </div>
+                      <div class="bar doted">
+                          <div class="title">FEB</div>
+                          <div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
+                      </div>
+                      <div class="bar ">
+                          <div class="title">MAR</div>
+                          <div class="value tooltips" data-original-title="40%" data-toggle="tooltip" data-placement="top">40%</div>
+                      </div>
+                      <div class="bar doted">
+                          <div class="title">APR</div>
+                          <div class="value tooltips" data-original-title="55%" data-toggle="tooltip" data-placement="top">55%</div>
+                      </div>
+                      <div class="bar">
+                          <div class="title">MAY</div>
+                          <div class="value tooltips" data-original-title="20%" data-toggle="tooltip" data-placement="top">20%</div>
+                      </div>
+                      <div class="bar doted">
+                          <div class="title">JUN</div>
+                          <div class="value tooltips" data-original-title="39%" data-toggle="tooltip" data-placement="top">39%</div>
+                      </div>
+                      <div class="bar">
+                          <div class="title">JUL</div>
+                          <div class="value tooltips" data-original-title="75%" data-toggle="tooltip" data-placement="top">75%</div>
+                      </div>
+                      <div class="bar doted">
+                          <div class="title">AUG</div>
+                          <div class="value tooltips" data-original-title="45%" data-toggle="tooltip" data-placement="top">45%</div>
+                      </div>
+                      <div class="bar ">
+                          <div class="title">SEP</div>
+                          <div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
+                      </div>
+                      <div class="bar doted">
+                          <div class="title">OCT</div>
+                          <div class="value tooltips" data-original-title="42%" data-toggle="tooltip" data-placement="top">42%</div>
+                      </div>
+                      <div class="bar ">
+                          <div class="title">NOV</div>
+                          <div class="value tooltips" data-original-title="60%" data-toggle="tooltip" data-placement="top">60%</div>
+                      </div>
+                      <div class="bar doted">
+                          <div class="title">DEC</div>
+                          <div class="value tooltips" data-original-title="90%" data-toggle="tooltip" data-placement="top">90%</div>
+                      </div>
+                  </div>
+                  <!--custom chart end-->
+              </div>
+              <div class="col-lg-4">
+                  <!--new earning start-->
+                  <div class="panel terques-chart">
+                      <div class="panel-body chart-texture">
+                          <div class="chart">
+                              <div class="heading">
+                                  <span>星期 五</span>
+                                  <strong>$ 57,00 | 15%</strong>
+                              </div>
+                              <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
+                          </div>
+                      </div>
+                      <div class="chart-tittle">
+                          <span class="title">最新收入</span>
+                          <span class="value">
+                              <a href="#" class="active">行情</a>
+                              |
+                              <a href="#">介绍</a>
+                              |
+                              <a href="#">在线</a>
+                          </span>
+                      </div>
+                  </div>
+                  <!--new earning end-->
+
+                  <!--total earning start-->
+                  <div class="panel green-chart">
+                      <div class="panel-body">
+                          <div class="chart">
+                              <div class="heading">
+                                  <span>6 月</span>
+                                  <strong>23 天 | 65%</strong>
+                              </div>
+                              <div id="barchart"></div>
+                          </div>
+                      </div>
+                      <div class="chart-tittle">
+                          <span class="title">总收入</span>
+                          <span class="value">$, 76,54,678</span>
+                      </div>
+                  </div>
+                  <!--total earning end-->
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-12">
+                  <!--work progress start-->
+                  <section class="panel">
+                      <div class="panel-body progress-panel">
+                          <div class="task-progress">
+                              <h1>工作 进展</h1>
+                              <p>深圳开信财富管理有限公司</p>
+                          </div>
+                          <div class="task-option">
+                              <select class="styled">
+                                  <option>AAAABB</option>
+                                  <option>BBBBBB</option>
+                                  <option>CCCCCC</option>
+                              </select>
+                          </div>
+                      </div>
+                      <table class="table table-hover personal-task">
+                          <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>
+                                  销售目标
+                              </td>
+                              <td>
+                                  <span class="badge bg-important">75%</span>
+                              </td>
+                              <td>
+                                <div id="work-progress1"></div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>
+                                  产品交付
+                              </td>
+                              <td>
+                                  <span class="badge bg-success">43%</span>
+                              </td>
+                              <td>
+                                  <div id="work-progress2"></div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>
+                                  支付总计
+                              </td>
+                              <td>
+                                  <span class="badge bg-info">67%</span>
+                              </td>
+                              <td>
+                                  <div id="work-progress3"></div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>4</td>
+                              <td>
+                                  工作进度
+                              </td>
+                              <td>
+                                  <span class="badge bg-warning">30%</span>
+                              </td>
+                              <td>
+                                  <div id="work-progress4"></div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>5</td>
+                              <td>
+                                  递送支出
+                              </td>
+                              <td>
+                                  <span class="badge bg-primary">15%</span>
+                              </td>
+                              <td>
+                                  <div id="work-progress5"></div>
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </section>
+                  <!--work progress end-->
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-4">
+                  <!--weather statement start-->
+                  <section class="panel">
+                      <div class="weather-bg">
+                          <div class="panel-body">
+                              <div class="row">
+                                  <div class="col-xs-6">
+                                      <i class="icon-cloud"></i>
+                                      California
+                                  </div>
+                                  <div class="col-xs-6">
+                                      <div class="degree">
+                                          24°
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <footer class="weather-category">
+                          <ul>
+                              <li class="active">
+                                  <h5>humidity</h5>
+                                  56%
+                              </li>
+                              <li>
+                                  <h5>precip</h5>
+                                  1.50 in
+                              </li>
+                              <li>
+                                  <h5>winds</h5>
+                                  10 mph
+                              </li>
+                          </ul>
+                      </footer>
+                  </section>
+                  <!--weather statement end-->
+              </div>
+              <div class="col-lg-4">
+                  <div class="row">
+                      <div class="col-xs-6">
+                          <!--pie chart start-->
+                          <section class="panel">
+                              <div class="panel-body">
+                                  <div class="chart">
+                                      <div id="pie-chart" ></div>
+                                  </div>
+                              </div>
+                              <footer class="pie-foot">
+                                  Free: 260GB
+                              </footer>
+                          </section>
+                          <!--pie chart start-->
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </section>
+    </section>
+    <!--main content end-->
+{% endblock %}
+
+{% block script %}
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="../../public/js/admin/jquery.js"></script>
+<script src="../../public/js/jquery-3.2.1.min.js"></script>
+<script src="../../public/js/bootstrap.min.js"></script>
+<script src="../../public/js/admin/jquery.scrollTo.min.js"></script>
+<script src="../../public/js/admin/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="../../public/js/admin/jquery.sparkline.js" type="text/javascript"></script>
+<script src="../../public/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="../../public/js/owl.carousel.js" ></script>
+<script src="../../public/js/admin/jquery.customSelect.min.js" ></script>
+<!--common script for all pages-->
+<script src="../../public/js/admin/common-scripts.js"></script>
+<!--script for this page-->
+<script src="../../public/js/admin/sparkline-chart.js"></script>
+<script src="../../public/js/admin/easy-pie-chart.js"></script>
+<script>
+  //owl carousel
+  $(document).ready(function() {
+    $("#owl-demo").owlCarousel({
+      navigation : true,
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem : true
+
+    });
+  });
+  //custom select box
+  $(function(){
+    $('select.styled').customSelect();
+  });
+</script>
+{% endblock %}

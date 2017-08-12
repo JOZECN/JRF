@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="JOZECN">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="../../public/img/favicon.html">
+
+    <title>开信财富</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../public/css/admin/bootstrap-reset.css" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../public/js/admin/html5shiv.js"></script>
+    <script src="../../public/js/admin/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<section id="container" class="">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="/admin" class="logo">开信<span>财富</span></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- settings start -->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-tasks"></i>
+                        <span class="badge bg-success">6</span>
+                    </a>
+                    <ul class="dropdown-menu extended tasks-bar">
+                        <div class="notify-arrow notify-arrow-green"></div>
+                        <li>
+                            <p class="green">你有 6 个进行中任务</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Dashboard v1.3</div>
+                                    <div class="percent">40%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% 完成度 (success)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Database Update</div>
+                                    <div class="percent">60%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% 完成度 (warning)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Iphone Development</div>
+                                    <div class="percent">87%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
+                                        <span class="sr-only">87% 完成度</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Mobile App</div>
+                                    <div class="percent">33%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+                                        <span class="sr-only">33% 完成度 (danger)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Dashboard v1.3</div>
+                                    <div class="percent">45%</div>
+                                </div>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                        <span class="sr-only">45% 完成度</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="external">
+                            <a href="#">See All Tasks</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- settings end -->
+                <!-- inbox dropdown start-->
+                <li id="header_inbox_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-envelope-alt"></i>
+                        <span class="badge bg-important">5</span>
+                    </a>
+                    <ul class="dropdown-menu extended inbox">
+                        <div class="notify-arrow notify-arrow-red"></div>
+                        <li>
+                            <p class="red">你有 5 条新消息</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jonathan Smith</span>
+                                    <span class="time">0 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                        Hello, this is an example msg.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini2.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jhon Doe</span>
+                                    <span class="time">10 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                     Hi, Jhon Doe Bhai how are you ?
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini3.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jason Stathum</span>
+                                    <span class="time">180 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                        This is awesome dashboard.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini4.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jondi Rose</span>
+                                    <span class="time">0 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                        Hello, this is metrolab
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">查看更多消息</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- inbox dropdown end -->
+                <!-- notification dropdown start-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-bell-alt"></i>
+                        <span class="badge bg-warning">7</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow">你有 7 个新通知</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                Server #3 overloaded.
+                                <span class="small italic">34 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-warning"><i class="icon-bell"></i></span>
+                                Server #10 not respoding.
+                                <span class="small italic">60 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                Database overloaded 24%.
+                                <span class="small italic">240 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-success"><i class="icon-plus"></i></span>
+                                New user registered.
+                                <span class="small italic">0 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-info"><i class="icon-bullhorn"></i></span>
+                                Application error.
+                                <span class="small italic">10 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">查看更多通知</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+        <div class="top-nav ">
+            <!--search & user info start-->
+            <ul class="nav pull-right top-menu">
+                <li>
+                    <input type="text" class="form-control search" placeholder="Search">
+                </li>
+                <!-- user login dropdown start-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" src="../../public/img/avatar1_small.jpg">
+                        <span class="username">JOZECN</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a href="#"><i class=" icon-suitcase"></i> 简介</a></li>
+                        <li><a href="#"><i class="icon-cog"></i> 设置</a></li>
+                        <li><a href="#"><i class="icon-bell-alt"></i> 通知</a></li>
+                        <li><a href="login.html"><i class="icon-key"></i> 登出</a></li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!--search & user info end-->
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a class="" href="/admin">
+                        <i class="icon-dashboard"></i>
+                        <span>主面板</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-book"></i>
+                        <span>UI 元素</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/admin/general">通用</a></li>
+                        <li><a class="" href="/admin/buttons">按钮</a></li>
+                        <li><a class="" href="/admin/widget">部件</a></li>
+                        <li><a class="" href="/admin/slider">滑块</a></li>
+                        <li><a class="" href="/admin/font_awesome">字体</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-cogs"></i>
+                        <span>组件</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/admin/grids">网格</a></li>
+                        <li><a class="" href="/admin/calendar">日历</a></li>
+                        <li><a class="" href="/admin/charts">图表</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-tasks"></i>
+                        <span>表单</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/admin/form_component">表单组件</a></li>
+                        <li><a class="" href="/admin/form_wizard">导向表单</a></li>
+                        <li><a class="" href="/admin/form_validation">验证表单</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-th"></i>
+                        <span>数据表格</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/admin/basic_table">基本表格</a></li>
+                        <li><a class="" href="/admin/dynamic_table">动态表格</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="" href="/admin/inbox">
+                        <i class="icon-envelope"></i>
+                        <span>邮件</span>
+                        <span class="label label-danger pull-right mail-info">2</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-glass"></i>
+                        <span>额外</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/admin/blank">空白页</a></li>
+                        <li><a class="" href="/admin/profile">简介</a></li>
+                        <li><a class="" href="/admin/invoice">清单</a></li>
+                        <li><a class="" href="/admin/404">404 错误</a></li>
+                        <li><a class="" href="/admin/500">500 错误</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="" href="/admin/login">
+                        <i class="icon-user"></i>
+                        <span>登录</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-hdd"></i>
+                        <span>产品管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/admin/product_list">产品列表</a></li>
+                        <li><a class="" href="/admin/product_add">添加产品</a></li>
+                        <li><a class="" href="/admin/product_category">产品分类</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-comments"></i>
+                        <span>资讯管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">资讯列表</a></li>
+                        <li><a class="" href="#">添加资讯</a></li>
+                        <li><a class="" href="#">资讯分类</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/user_list" class="">
+                        <i class="icon-user"></i>
+                        <span>用户数据</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+    {% block main %}{% endblock %}
+</section>
+{% block script %}{% endblock %}
+</body>
+</html>

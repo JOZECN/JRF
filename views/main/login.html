@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../../public/css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../public/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="../../public/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../public/js/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+    <title>开信财富</title>
+    <style type="text/css" rel="stylesheet">
+        html,body{
+            color: #555;
+            height: 100%;
+            width: 100%;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover,a:link,a:visited,a:active{
+            text-decoration: none;
+        }
+        .main-body {
+            text-align: center;
+            z-index: 999;
+            position: absolute;
+            display: none;
+        }
+        .banner-wrap {
+            margin: 0 auto;
+            width: 300px;
+        }
+        .banner-wrap .navs-slider{
+            position: relative;
+            display: inline-block;
+        }
+        .banner-wrap .navs-slider a{
+            display: block;
+            height: 35px;
+            width: 40px;
+            float: left;
+            line-height: 35px;
+            font-size: 18px;
+            color: #555;
+            text-align: center;
+        }
+        .banner-wrap input{
+            width: 100%;
+            height: 47px;
+            padding: 14px;
+            border: none;
+        }
+        .banner-wrap .box{
+            border: 1px #d5d5d5 solid;
+            border-radius: 3px;
+        }
+        .site-title {
+            margin: 0 40px;
+            height: 50px;
+            background: url(../../public/img/logo.jpg) no-repeat left center;
+            color: #cc0000;
+            font-size: 35px;
+            display: block;
+            padding-left: 50px;
+            margin-bottom: 10px;
+            background-size: 50px 50px;
+        }
+        .check-failure{
+            position: absolute;
+            color: red;
+            display: none;
+            line-height: 47px;
+        }
+        .navs-slider {
+            margin-bottom: 10px;
+        }
+        .btnLogin {
+            margin-right: 10px;
+        }
+        .btnRegister {
+            margin-left: 10px;
+        }
+        .register {
+            display:none;
+            width: 300px;
+        }
+        .submit {
+            margin-top: 18px;
+            background: #0f88eb;
+            color: white;
+            border-radius: 3px;
+        }
+        .register-username,.register-password {
+            border-bottom: 1px #d5d5d5 solid !important;
+        }
+        .login-username {
+            border-bottom: 1px #d5d5d5 solid !important;
+        }
+        .login-password {
+
+        }
+        #particles {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+        #particles #Mycanvas {
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="main-body">
+    <div class="banner-wrap">
+        <a href="/" class="site-title">
+            <p>开信财富</p>
+        </a>
+        <p style="font-size: 18px;">深圳前海开信财富管理有限公司</p>
+        <div class="navs-slider">
+            <a href="javascript:;" class="btnLogin">登录</a>
+            <a href="javascript:;" class="btnRegister">注册</a>
+        </div>
+        <div class="register" id="register">
+            <div class="box">
+                <input class="register-username" name="username" type="text" placeholder="请输入用户名"/><label class="check-failure">用户已存在!</label>
+                <input class="register-password" name="password" type="password" placeholder="请输入密码"/>
+                <input class="register-repassword" name="repassword" type="password" placeholder="请再次输入密码"/>
+            </div>
+            <input class="submit" type="button" value="提交"/>
+            <div style="width: 100%;margin-top: 15px;">
+                点击「注册」按钮，即代表你同意<a href="javascript:;" data-toggle="modal" data-target="#emcProtocol">《【开信财富】协议》</a>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div class="modal fade" id="emcProtocol" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">
+                            深圳开信财富管理有限公司
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div id="section-rule" style="text-align: left;">
+                            <h4 style="padding: 0;margin: 0;">用户注册须知</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="login" id="login" style="width: 300px;">
+            <div class="box">
+                <input class="login-username" type="text" name="LoginUsername" placeholder="请输入用户名"/>
+                <input class="login-password" type="password" name="LoginPassword" placeholder="请输入密码"/>
+            </div>
+            <input type="button" value="提交" class="submit"/>
+            <div style="width: 100%;margin-top: 15px;">
+                <a href="javascript:;" style="float: right">无法登陆?</a>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="particles"><canvas id="Mycanvas"></canvas></div>
+<script src="../../public/js/login_canvas.js" type="text/javascript"></script>
+</body>
+<script type="text/javascript">
+  $(function() {
+    load_mian_body();
+
+    function load_mian_body() {
+      var main_body=$('.main-body');
+      var windowWidth = document.body.offsetWidth;
+      var windowHeight = document.body.offsetHeight;
+      var popupHeight = main_body.height();
+      var popupWidth = main_body.width();
+      main_body.css({"left":windowWidth/2-popupWidth/2})
+        .animate({top: windowHeight/2-popupHeight/2-50, opacity: "show" }, "slow");
+    }
+
+    $('.banner-wrap .navs-slider .btnLogin').css('color','#e95a44')
+      .css('border-bottom','2px #e95a44 solid');
+
+    // 登录注册的切换
+    $('.banner-wrap .navs-slider .btnLogin').click(function () {
+      $('#login').show();
+      $('.banner-wrap .navs-slider .btnLogin').css('color','#e95a44')
+        .css('border-bottom','2px #e95a44 solid');
+      $('#register').hide();
+      $('.banner-wrap .navs-slider .btnRegister').css('color','#555')
+        .css('border-bottom','none');
+    });
+
+    $('.banner-wrap .navs-slider .btnRegister').click(function () {
+      $('#login').hide();
+      $('.banner-wrap .navs-slider .btnLogin').css('color','#555')
+        .css('border-bottom','none');
+      $('#register').show();
+      $('.banner-wrap .navs-slider .btnRegister').css('color','#e95a44')
+        .css('border-bottom','2px #e95a44 solid');
+    });
+    // 点击注册按钮，通过ajax提交数据
+    $('#register .submit').click(function () {
+      // 通过ajax提交交
+      $.ajax({
+        type: 'post',
+        url: '/api/user/register',
+        data: {
+          username: $('#register').find('[name="username"]').val(),
+          password: $('#register').find('[name="password"]').val(),
+          repassword: $('#register').find('[name="repassword"]').val()
+        },
+        dataType: 'json',
+        success: function (data) {
+          //console.log(data);
+          alert(data.message);
+          if (!data.code) {
+            // 注册成功
+            $('#register .box input').css('value','');
+            $('#register').hide();
+            $('#login').show();
+          }
+        }
+      });
+    });
+    // 点击登录按钮，通过ajax提交数据
+    $('#login .submit').click(function () {
+      // 通过ajax提交
+      $.ajax({
+        type: 'post',
+        url: '/api/user/login',
+        data: {
+          LoginUsername: $('#login').find('[name="LoginUsername"]').val(),
+          LoginPassword: $('#login').find('[name="LoginPassword"]').val()
+        },
+        dataType: 'json',
+        success: function (data) {
+          //console.log(data);window.location.href=
+          //alert(data.message);
+          var type='success';
+          var showCancelButton=false;
+          var title="Welcome "+$('#login').find('[name="LoginUsername"]').val();
+          if(data.code==1||data.code==2){
+            type='warning';
+            showCancelButton=true;
+            title=data.message;
+          }
+          sweetAlert({
+            title: title,
+            type: type,
+            showCancelButton: showCancelButton,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "Go Back to EMC",
+            closeOnConfirm: false
+          }, function(){
+            self.location=document.referrer;
+          });
+
+          //sweetAlert(data.message);
+          //setTimeout("if (!data.code) {window.location.href='http://'+(window.location.host).toString();}",3000);
+        }
+      });
+    });
+
+    //ajax用户注册判断
+    $('.register-username').blur(function () {
+      $.ajax({
+        type: 'post',
+        url: '/api/user/registerCheck',
+        async:true,
+        data: {
+          username: $('#register').find('[name="username"]').val()
+        },
+        dataType: 'json',
+        success: function (data) {
+          //console.log(data);
+          if (data.code==4) {
+            var divLeft=$('.register-username').offset().left+310;
+            var divTop=$('.register-username').offset().top;
+            $('.check-failure').css("left",divLeft)
+              .css("top",divTop)
+              .show();
+          }else if(data.code==5){
+            $('.check-failure').hide();
+          }
+        }
+      });
+    });
+  })
+</script>
+</html>
