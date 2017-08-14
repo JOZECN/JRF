@@ -639,3 +639,232 @@ admin
               </div>
 
 
+<!--<div class="nav notify-row" id="top_menu">
+            &lt;!&ndash;  notification start &ndash;&gt;
+            <ul class="nav top-menu">
+                &lt;!&ndash; settings start &ndash;&gt;
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-tasks"></i>
+                        <span class="badge bg-success">6</span>
+                    </a>
+                    <ul class="dropdown-menu extended tasks-bar">
+                        <div class="notify-arrow notify-arrow-green"></div>
+                        <li>
+                            <p class="green">你有 6 个进行中任务</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Dashboard v1.3</div>
+                                    <div class="percent">40%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% 完成度 (success)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Database Update</div>
+                                    <div class="percent">60%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% 完成度 (warning)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Iphone Development</div>
+                                    <div class="percent">87%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
+                                        <span class="sr-only">87% 完成度</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Mobile App</div>
+                                    <div class="percent">33%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+                                        <span class="sr-only">33% 完成度 (danger)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Dashboard v1.3</div>
+                                    <div class="percent">45%</div>
+                                </div>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                        <span class="sr-only">45% 完成度</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="external">
+                            <a href="#">See All Tasks</a>
+                        </li>
+                    </ul>
+                </li>
+                &lt;!&ndash; settings end &ndash;&gt;
+                &lt;!&ndash; inbox dropdown start&ndash;&gt;
+                <li id="header_inbox_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-envelope-alt"></i>
+                        <span class="badge bg-important">5</span>
+                    </a>
+                    <ul class="dropdown-menu extended inbox">
+                        <div class="notify-arrow notify-arrow-red"></div>
+                        <li>
+                            <p class="red">你有 5 条新消息</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jonathan Smith</span>
+                                    <span class="time">0 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                        Hello, this is an example msg.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini2.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jhon Doe</span>
+                                    <span class="time">10 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                     Hi, Jhon Doe Bhai how are you ?
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini3.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jason Stathum</span>
+                                    <span class="time">180 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                        This is awesome dashboard.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../../public/img/avatar-mini4.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Jondi Rose</span>
+                                    <span class="time">0 分钟前</span>
+                                    </span>
+                                <span class="message">
+                                        Hello, this is metrolab
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">查看更多消息</a>
+                        </li>
+                    </ul>
+                </li>
+                &lt;!&ndash; inbox dropdown end &ndash;&gt;
+                &lt;!&ndash; notification dropdown start&ndash;&gt;
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-bell-alt"></i>
+                        <span class="badge bg-warning">7</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow">你有 7 个新通知</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                Server #3 overloaded.
+                                <span class="small italic">34 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-warning"><i class="icon-bell"></i></span>
+                                Server #10 not respoding.
+                                <span class="small italic">60 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                Database overloaded 24%.
+                                <span class="small italic">240 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-success"><i class="icon-plus"></i></span>
+                                New user registered.
+                                <span class="small italic">0 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-info"><i class="icon-bullhorn"></i></span>
+                                Application error.
+                                <span class="small italic">10 分钟前</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">查看更多通知</a>
+                        </li>
+                    </ul>
+                </li>
+                &lt;!&ndash; notification dropdown end &ndash;&gt;
+            </ul>
+            &lt;!&ndash;  notification end &ndash;&gt;
+        </div>-->
+
+
+
+
+
+<div class="col-lg-12">
+                  <!--new earning start-->
+                  <div class="panel terques-chart">
+                      <div class="panel-body chart-texture">
+                          <div class="chart">
+                              <div class="heading">
+                                  <strong>今日新增 57,00 (人)</strong>
+                                  <span>&nbsp;</span>
+                              </div>
+                              <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
+                          </div>
+                      </div>
+                      <div class="chart-tittle">
+                          <span class="title">用户总数变化 折线图</span>
+                      </div>
+                  </div>
+                  <!--new earning end-->
+              </div>

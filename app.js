@@ -15,6 +15,24 @@ app.set('views','./views');
 app.set('view engine','html');
 swig.setDefaults({cache:false});
 
+app.use(function(req,res,next){
+  req.cookies=new Cookies(req,res);
+
+  if(req.cookies.get('userInfo')){
+    try {
+      req.userInfo=JSON.parse(req.cookies.get('userInfo'));
+      User.findById(req.userInfo._id).then(function(userInfo){
+        req.userInfo.isAdmin=Boolean(userInfo.isAdmin);
+        next();
+      });
+    }catch(e){
+      next();
+    }
+  }else {
+    next();
+  }
+});
+
 app.use('/product',require('./routers/product'));
 app.use('/user',require('./routers/user'));
 app.use('/admin',require('./routers/admin'));

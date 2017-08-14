@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<style type="text/css">
+    .main_header {
+        opacity: 1;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.93);
+    }
+    .about-main {
+        margin-top: 80px;
+    }
+    .about-main .nav-header {
+        border-bottom: 1px #cccccc solid;
+        padding-bottom: 5px;
+        color: #e95a44;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .about-main .nav-list li a:hover {
+        background-color: #e95a44;
+        border-radius: 3px;
+        color: #FFFFFF;
+    }
+    .about-main .nav-list li a{
+        margin: 5px;
+        padding: 5px 10px;
+    }
+    .about-main .nav-list .active a {
+        background-color: #e95a44;
+        border-radius: 3px;
+        color: #FFFFFF;
+    }
+    .about-content {
+        padding: 20px;
+        background-color: #FFFFFF;
+        border: 1px #dddddd solid;
+        border-radius: 5px;
+        text-align: left;
+    }
+</style>
+<div class="row about-main">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul class="nav nav-list well">
+                    <li class="nav-header">常见问题</li>
+                    <li class="active"><a href="#" name="guide">新手指南</a></li>
+                    <li><a href="#" name="investor">投资人必读</a></li>
+                    <li><a href="#" name="recharge">充值提现必读</a></li>
+                    <li class="nav-header">用户协议</li>
+                    <li><a href="#" name="regulation">政策法规</a></li>
+                    <li><a href="#" name="protect">隐私保护</a></li>
+                    <li><a href="#" name="term">免责条款</a></li>
+                    <li class="nav-header">关于我们</li>
+                    <li><a href="#" name="about-company">公司简介</a></li>
+                    <li><a href="#" name="contact-us">联系我们</a></li>
+                    <li><a href="#" name="join-us">加入我们</a></li>
+                    <li class="nav-header">关于平台</li>
+                    <li><a href="#" name="about-site">平台简介</a></li>
+                    <li><a href="#" name="site-theory">平台原理</a></li>
+                    <li><a href="#" name="rate">费率</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div class="about-content">
+                    <div class="block guide-block">guide</div>
+                    <div class="block investor-block" style="display: none">investor</div>
+                    <div class="block recharge-block" style="display: none">recharge</div>
+                    <div class="block regulation-block" style="display: none">regulation</div>
+                    <div class="block protect-block" style="display: none">protect</div>
+                    <div class="block term-block" style="display: none">term</div>
+                    <div class="block about-company-block" style="display: none">company</div>
+                    <div class="block contact-us-block" style="display: none">contact-us</div>
+                    <div class="block join-us-block" style="display: none">join-us</div>
+                    <div class="block about-site-block" style="display: none">about-site</div>
+                    <div class="block site-theory-block" style="display: none">site-theory</div>
+                    <div class="block rate-block" style="display: none">rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('.nav-list li').click(function (e) {
+      e.preventDefault();
+      $('.nav-list li').removeClass('active');
+      $(this).addClass('active');
+    });
+    $('.nav-list li a').click(function () {
+      var name=$(this).attr('name');
+      $('.about-content .block').css('display','none');
+      $('.about-content .'+ name +'-block').css('display','block');
+    });
+  });
+</script>
+{% endblock %}
+
+{% block footer %}
+{%include 'footer.html' %}
+{% endblock %}

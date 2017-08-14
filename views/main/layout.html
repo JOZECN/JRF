@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>金融坊</title>
+    <title>开信财富</title>
     <link href="../../public/css/normalize.css" rel="stylesheet" type="text/css" />
     <link href="../../public/css/animate.css" rel="stylesheet" type="text/css" />
     <link href="../../public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -36,35 +36,68 @@
     <link rel="stylesheet" href="../../public/css/ionicons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <script src="../../public/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style type="text/css">
+        .site-logo a{
+            padding: 0 !important;
+            line-height: 60px;
+        }
+        .site-logo img {
+            height: 50px;
+            width: auto;
+            margin-left: 20px;
+        }
+        .site-logo span {
+            margin-left: 10px;
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 60px;
+            color: #e95a44;
+            vertical-align: middle;
+        }
+        .menu > ul > li a {
+            padding: 1.5em 2em;
+        }
+        @media only screen and (max-width: 959px) {
+            .site-logo {
+                display: none !important;
+            }
+            .menu-mobile {
+                padding: 10px;
+            }
+            .menu-mobile:after {
+                margin-top: 11px;
+                line-height: 20px;
+            }
+            .menu > ul > li a {
+                padding: 5px;
+            }
+            .menu-dropdown-icon:before {
+                padding: 5px 20px;
+            }
+            .menu > ul > li > ul.normal-sub {
+                padding: 0;
+            }
+            .menu > ul > li > ul.normal-sub > li a {
+                padding:10px 0;
+            }
+            .menu > ul > li > ul > li {
+                margin-top: 0;
+            }
+        }
+    </style>
 </head>
 <body>
 <header class="main_header">
-    <div class="row">
+    <div class="row" style="padding: 0;">
         <div class="menu-container">
             <div class="menu">
                 <ul>
-                    <li><a href="/" style="padding: 0;line-height: 60px;"><img src="../../public/img/logo.jpg" style="height: 50px;width: auto;"><span style="margin-left: 10px;font-size: 25px;font-weight: 600;line-height: 60px;color: #e95a44;vertical-align: middle;">开信财富</span></a></li>
+                    <li class="site-logo"><a href="/"><img src="../../public/img/logo.jpg"><span>开信财富</span></a></li>
                     <li><a href="/">首页</a></li>
                     <li><a href="/product">理财产品</a>
                         <ul>
-                            <li><a href="#">投资产品</a>
-                                <ul>
-                                    <li><a href="">开信热销</a></li>
-                                    <li><a href="">固定收益</a></li>
-                                    <li><a href="">浮动收益</a></li>
-                                    <li><a href="">短期理财</a></li>
-                                    <li><a href="">另类投资</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">保险产品</a>
-                                <ul>
-                                    <li><a href="">医疗险</a></li>
-                                    <li><a href="">寿险</a></li>
-                                    <li><a href="">年金险</a></li>
-                                    <li><a href="">意外险</a></li>
-                                    <li><a href="">重疾险</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="#">投资产品</a></li>
+                            <li><a href="#">保险产品</a></li>
                         </ul>
                     </li>
                     <li><a href="#">开信海外</a>
@@ -75,16 +108,25 @@
                             <li><a href="">海外移民</a></li>
                         </ul>
                     </li>
+                    <li><a href="#">理财顾问</a></li>
                     <li><a href="#">我的开信</a>
                         <ul>
-                            <li><a href="/admin">我的账户</a></li>
-                            <li><a href="">我的消息</a></li>
-                            <li><a href="">我的理财顾问</a></li>
-                            <li><a href="">交易记录</a></li>
-                            <li><a href="">账户安全</a></li>
+                            {% if userInfo._id %}
+                                {% if userInfo.isAdmin %}
+                                <li><a href="/admin" onclick=window.open('/admin','_parent')>开信后台</a></li>
+                                {% endif %}
+                                <li><a href="/user" onclick=window.open('/user','_parent')>我的账户</a></li>
+                                <li><a href="">我的消息</a></li>
+                                <li><a href="">交易记录</a></li>
+                                <li><a href="">账户安全</a></li>
+                                <li><a href="">账户安全</a></li>
+                                <li><a href="javascript:;" id="logout">注销登录</a></li>
+                            {% else %}
+                                <li><a href="/login" onclick=window.open('/login','_parent')>登录/注册</a></li>
+                            {% endif %}
                         </ul>
                     </li>
-                    <li><a href="#">关于开信</a></li>
+                    <li><a href="/about" onclick=window.open('/about','_parent')>关于开信</a></li>
                 </ul>
             </div>
         </div>
@@ -106,4 +148,34 @@
 <script src="../../public/js/owl.carousel.js"></script>
 <script src="../../public/js/scrollupto.js"></script>
 <script type="text/javascript" src="../../public/js/main.js"></script>
+
+<script type="text/javascript">
+  $('#logout').click(function(){
+    $.ajax({
+      type:'get',
+      url:'/user/logout',
+      success:function(data){
+        if(!data.code){
+          window.location.reload();
+        }
+      }
+    });
+    /*sweetAlert({
+        title: '确认注销登录？',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: "#0083ff",
+        confirmButtonText: "确认",
+        closeOnConfirm: false
+    }, function(){
+        $.ajax({
+            type:'get',
+            url:'/user/logout',
+            success:function(){
+              window.location.reload();
+            }
+        });
+    });*/
+  });
+</script>
 </html>

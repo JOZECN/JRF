@@ -191,7 +191,6 @@
     $('.banner-wrap .navs-slider .btnLogin').css('color','#e95a44')
       .css('border-bottom','2px #e95a44 solid');
 
-    // 登录注册的切换
     $('.banner-wrap .navs-slider .btnLogin').click(function () {
       $('#login').show();
       $('.banner-wrap .navs-slider .btnLogin').css('color','#e95a44')
@@ -209,12 +208,11 @@
       $('.banner-wrap .navs-slider .btnRegister').css('color','#e95a44')
         .css('border-bottom','2px #e95a44 solid');
     });
-    // 点击注册按钮，通过ajax提交数据
+
     $('#register .submit').click(function () {
-      // 通过ajax提交交
       $.ajax({
         type: 'post',
-        url: '/api/user/register',
+        url: '/user/register',
         data: {
           username: $('#register').find('[name="username"]').val(),
           password: $('#register').find('[name="password"]').val(),
@@ -222,10 +220,8 @@
         },
         dataType: 'json',
         success: function (data) {
-          //console.log(data);
           alert(data.message);
           if (!data.code) {
-            // 注册成功
             $('#register .box input').css('value','');
             $('#register').hide();
             $('#login').show();
@@ -233,23 +229,20 @@
         }
       });
     });
-    // 点击登录按钮，通过ajax提交数据
+
     $('#login .submit').click(function () {
-      // 通过ajax提交
       $.ajax({
         type: 'post',
-        url: '/api/user/login',
+        url: '/user/login',
         data: {
           LoginUsername: $('#login').find('[name="LoginUsername"]').val(),
           LoginPassword: $('#login').find('[name="LoginPassword"]').val()
         },
         dataType: 'json',
         success: function (data) {
-          //console.log(data);window.location.href=
-          //alert(data.message);
           var type='success';
           var showCancelButton=false;
-          var title="Welcome "+$('#login').find('[name="LoginUsername"]').val();
+          var title="欢迎 "+$('#login').find('[name="LoginUsername"]').val();
           if(data.code==1||data.code==2){
             type='warning';
             showCancelButton=true;
@@ -260,23 +253,20 @@
             type: type,
             showCancelButton: showCancelButton,
             confirmButtonColor: "#0083ff",
-            confirmButtonText: "Go Back to EMC",
+            confirmButtonText: "返回上一页",
             closeOnConfirm: false
           }, function(){
             self.location=document.referrer;
           });
-
-          //sweetAlert(data.message);
-          //setTimeout("if (!data.code) {window.location.href='http://'+(window.location.host).toString();}",3000);
         }
       });
     });
 
-    //ajax用户注册判断
+
     $('.register-username').blur(function () {
       $.ajax({
         type: 'post',
-        url: '/api/user/registerCheck',
+        url: '/user/registerCheck',
         async:true,
         data: {
           username: $('#register').find('[name="username"]').val()

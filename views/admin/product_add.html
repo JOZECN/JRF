@@ -6,6 +6,18 @@
 <!-- Custom styles for this template -->
 <link href="../../public/css/admin/style.css" rel="stylesheet">
 <link href="../../public/css/admin/style-responsive.css" rel="stylesheet" />
+
+<script src="../../public/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+
+<style type="text/css">
+    .category-select {
+        width: 100%;
+    }
+    .form-control {
+        color: #555;
+    }
+</style>
 {% endblock %}
 
 {% block main %}
@@ -25,17 +37,21 @@
                                 <div class="form-group ">
                                     <label for="pname" class="control-label col-lg-2">产品名 (必填项)</label>
                                     <div class="col-lg-6">
-                                        <input class=" form-control" id="pname" name="name" minlength="2" type="text" required />
+                                        <input class=" form-control" id="pname" name="name" type="text" required />
                                     </div>
                                     <label for="pcategory" class="control-label col-lg-2">所属分类 (必选项)</label>
-                                    <div class="col-lg-2">
-                                        <input class=" form-control" id="pcategory" name="category" minlength="2" type="text" required />
+                                    <div class="col-lg-2" style="padding: 8px 15px;">
+                                        <select id="pcategory" name="category" class="category-select" required>
+                                            {% for category in categories %}
+                                            <option value="{{category._id.toString()}}">{{category.name}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="pcomment" class="control-label col-lg-2">产品描述 (必填项)</label>
+                                    <label for="pdescription" class="control-label col-lg-2">产品描述 (必填项)</label>
                                     <div class="col-lg-10">
-                                        <textarea class="form-control " id="pcomment" name="comment" required></textarea>
+                                        <textarea class="form-control " id="pdescription" name="description" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -47,21 +63,21 @@
                                 <div class="form-group ">
                                     <label for="pincome" class="control-label col-lg-2">年化收益</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="pincome" name="income" minlength="2" type="text" />
+                                        <input class=" form-control" id="pincome" name="income" type="text" />
                                     </div>
                                     <label for="pcompany" class="control-label col-lg-2">服务公司</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="pcompany" name="company" minlength="2" type="text" />
+                                        <input class=" form-control" id="pcompany" name="company" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label for="psort" class="control-label col-lg-2">产品类型</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="psort" name="sort" minlength="2" type="text" />
+                                        <input class=" form-control" id="psort" name="sort" type="text" />
                                     </div>
                                     <label for="ptime" class="control-label col-lg-2">持有期限</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="ptime" name="time" minlength="2" type="text" />
+                                        <input class=" form-control" id="ptime" name="time" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -88,8 +104,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-danger" type="submit">保存</button>
-                                        <button class="btn btn-default" type="button">取消</button>
+                                        <button class="btn btn-danger post-content" type="button">保存</button>
                                     </div>
                                 </div>
                             </form>
@@ -116,4 +131,48 @@
 <script src="../../public/js/admin/common-scripts.js"></script>
 <!--script for this page-->
 <script src="../../public/js/admin/form-validation-script.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.post-content').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/product/product_add',
+        data: {
+          name: $.trim($('#pname').val()),
+          category: $('#category').find("option:selected").attr('value'),
+          description: $.trim($('#pdescription').val()),
+          feature: $.trim($('#pfeature').val()),
+          income: $.trim($('#pincome').val()),
+          company: $.trim($('#pcompany').val()),
+          sort: $.trim($('#psort').val()),
+          time: $.trim($('#ptime').val()),
+          pay: $.trim($('#ppay').val()),
+          dealline: $.trim($('#pdealline').val()),
+          qualify: $.trim($('#pqualify').val()),
+          area: $.trim($('#parea').val()),
+        },
+        dataType: 'json',
+        success: function (data) {
+          var type='success';
+          var showCancelButton=false;
+          if(data.code==1||data.code==2||data.code==3){
+            type='warning';
+            showCancelButton=true;
+          }
+          sweetAlert({
+            title: data.message,
+            type: type,
+            showCancelButton: showCancelButton,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "返回产品列表",
+            closeOnConfirm: false
+          }, function(){
+            window.location.href='http://'+(window.location.host).toString()+"/admin/product_list";
+          });
+        }
+      });
+    });
+  })
+</script>
 {% endblock %}

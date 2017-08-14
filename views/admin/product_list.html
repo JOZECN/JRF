@@ -6,6 +6,12 @@
 <!-- Custom styles for this template -->
 <link href="../../public/css/admin/style.css" rel="stylesheet">
 <link href="../../public/css/admin/style-responsive.css" rel="stylesheet" />
+
+<style type="text/css">
+    .hidden-phone {
+        min-width: 60px;
+    }
+</style>
 {% endblock %}
 
 {% block main %}
@@ -22,176 +28,28 @@
                     <table class="table table-striped border-top" id="sample_1">
                         <thead>
                         <tr>
-                            <th style="width:8px;">
-                                <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
                             <th>产品名称</th>
                             <th class="hidden-phone">产品分类</th>
                             <th class="hidden-phone">发布人员</th>
                             <th class="hidden-phone">发布时间</th>
                             <th class="hidden-phone">访问量</th>
+                            <th class="hidden-phone"><i class="icon-edit"></i> 编辑</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% for product in data %}
                         <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">AAAA</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-success">9999</span></td>
+                            <td>{{product.name}}</td>
+                            <td class="hidden-phone">{{product.category}}</td>
+                            <td class="hidden-phone">{{product.user}}</td>
+                            <td class="center hidden-phone">{{product.date}}</td>
+                            <td class="hidden-phone"><span class="label label-success">{{product.view}}</span></td>
+                            <td>
+                                <a class="btn btn-primary btn-xs" href="/admin/product_edit?id={{product._id.toString()}}"><i class="icon-pencil"></i></a>
+                                <button class="btn btn-danger btn-xs" name="{{product._id.toString()}}"><i class="icon-trash "></i></button>
+                            </td>
                         </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">BBBB</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-warning">100</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">CCCC</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-danger">10</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">DDDD</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-info">300</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">AAAA</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-success">9999</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">BBBB</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-warning">100</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">CCCC</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-danger">10</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">DDDD</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-info">300</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">AAAA</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-success">9999</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">BBBB</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-warning">100</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">CCCC</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-danger">10</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">DDDD</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-info">300</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">AAAA</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-success">9999</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">BBBB</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-warning">100</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">CCCC</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-danger">10</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">DDDD</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-info">300</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">AAAA</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-success">9999</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">BBBB</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-warning">100</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">CCCC</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-danger">10</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                            <td>大业信托• 晟鑫 1号（恒大昆明）集合资金信托计划</td>
-                            <td class="hidden-phone">开信热销</td>
-                            <td class="hidden-phone">DDDD</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone"><span class="label label-info">300</span></td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </section>

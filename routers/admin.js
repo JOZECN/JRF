@@ -99,10 +99,6 @@ router.get('/widget', function(req,res,next){
 
 /*  router for admin page   */
 
-router.get('/product_list', function(req,res,next){
-  res.render('admin/product_list');
-});
-
 router.get('/product_add', function(req,res,next){
   res.render('admin/product_add');
 });
@@ -117,6 +113,88 @@ router.get('/category_add', function(req,res,next){
 
 router.get('/user_list', function(req,res,next){
   res.render('admin/user_list');
+});
+
+router.get('/questionnaire_list', function(req,res,next){
+  res.render('admin/questionnaire_list');
+});
+
+router.get('/questionnaire_add', function(req,res,next){
+  res.render('admin/questionnaire_add');
+});
+
+router.get('/about_us', function(req,res,next){
+  res.render('admin/about_us');
+});
+
+router.get('/about_site', function(req,res,next){
+  res.render('admin/about_site');
+});
+
+router.get('/user_agreement', function(req,res,next){
+  res.render('admin/user_agreement');
+});
+
+router.get('/faq', function(req,res,next){
+  res.render('admin/faq');
+});
+
+/*  function for admin data  */
+
+const User=require('../models/user');
+renderAdminTable(User,'user_list',10);
+
+const Category=require('../models/category');
+renderAdminTable(Category,'product_category',5);
+renderAdminTable(Category,'news_category',5);
+
+const Product = require('../models/product');
+renderAdminTable(Product,'product_list',5);
+
+const Content = require('../models/content');
+renderAdminTable(Content,'about_us',20);
+renderAdminTable(Content,'about_site',20);
+renderAdminTable(Content,'user_agreement',20);
+renderAdminTable(Content,'faq',20);
+
+function renderAdminTable(obj,type,limit,_query){
+  router.get('/'+type+'/', function (req,res,next) {
+    var page=req.query.page||1;
+    var count=0;
+
+    obj.count().then(function(_count){
+      count=_count;
+      var pages=Math.ceil(count/limit);
+      page=Math.min(page,pages);
+      page=Math.max(page,1);
+
+      var skip=(page-1)*limit;
+
+      var newObj = _query ? obj.find().sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find().sort({_id: -1}).limit(limit).skip(skip);
+
+      newObj.then(function(data){
+        res.render('admin/'+type,{
+          type:type,
+          userInfo:req.userInfo,
+          data:data,
+          page:page,
+          pages:pages,
+          limit:limit,
+          count:count
+        });
+      });
+    });
+  });
+}
+
+router.get('/about_us',function(req,res,next){
+  var contentId=req.query.contentId||'';
+  Content.findOne({
+    _id:contentId
+  }).then(function(content){
+    responseData.data=content;
+    res.json(responseData);
+  })
 });
 
 module.exports = router;

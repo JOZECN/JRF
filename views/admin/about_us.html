@@ -1,0 +1,188 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<!--external css-->
+<link href="../../public/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="../../public/css/admin/style.css" rel="stylesheet">
+<link href="../../public/css/admin/style-responsive.css" rel="stylesheet" />
+
+<script type="text/javascript" src="../../public/js/jquery-3.2.1.min.js"></script>
+
+<link rel="stylesheet" href="../../public/css/summernote.css" />
+<script type="text/javascript" src="../../public/js/summernote.js"></script>
+<link href="../../public/css/font/summernote.eot">
+<link href="../../public/css/font/summernote.ttf">
+<link href="../../public/css/font/summernote.woff">
+
+<style rel="stylesheet" type="text/css">
+    .panel {
+        margin-bottom: 0;
+    }
+    .btn-default {
+        color: #333 !important;
+        background-color: #ffffff !important;
+        border-color: #CCCCCC !important;
+    }
+    .btn-danger {
+        float: right;
+        margin-right: 15px;
+        margin-top: 1px;
+    }
+    @media (max-width: 768px) {
+        .btn {
+            margin-bottom: 0;
+        }
+    }
+</style>
+
+{% endblock %}
+
+{% block main %}
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <!--tab nav start-->
+        <section class="panel">
+            <header class="panel-heading tab-bg-dark-navy-blue ">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#about_company">公司简介</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#contact_us">联系我们</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#join_us">加入我们</a>
+                    </li>
+                    <button class="btn btn-danger">保存</button>
+                </ul>
+            </header>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div id="about_company" class="tab-pane active">
+                        <div class="about_company"></div>
+                        <script type="text/javascript">
+                          $(document).ready(function() {
+                            var $summernote = $('.about_company').summernote({
+                              height:500,
+                              minheight:500,
+                              dialogsFade:true,
+                              placeholder:'请输入描述...',
+                              callbacks: {
+                                onImageUpload: function (files) {
+                                  sendFile($summernote, files[0]);
+                                }
+                              }
+                            });
+
+                            function sendFile($summernote, file) {
+                              var formData = new FormData();
+                              formData.append("file", file);
+                              $.ajax({
+                                url: '/admin/uploadImg',
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                type: 'POST',
+                                success: function (data) {
+                                  $summernote.summernote('insertImage', data.url, function ($image) {
+                                    $image.attr('src', data.url);
+                                  });
+                                }
+                              });
+
+                            }
+                          });
+                        </script>
+                    </div>
+                    <div id="contact_us" class="tab-pane">
+                        <div class="contact_us"></div>
+                        <script type="text/javascript">
+                          $(document).ready(function() {
+                            var $summernote2 = $('.contact_us').summernote({
+                              height:500,
+                              minheight:500,
+                              dialogsFade:true,
+                              placeholder:'请输入描述...',
+                              callbacks: {
+                                onImageUpload: function (files) {
+                                  sendFile($summernote2, files[0]);
+                                }
+                              }
+                            });
+
+                            function sendFile($summernote2, file) {
+                              var formData = new FormData();
+                              formData.append("file", file);
+                              $.ajax({
+                                url: '/admin/uploadImg',
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                type: 'POST',
+                                success: function (data) {
+                                  $summernote2.summernote('insertImage', data.url, function ($image) {
+                                    $image.attr('src', data.url);
+                                  });
+                                }
+                              });
+                            }
+                          });
+                        </script>
+                    </div>
+                    <div id="join_us" class="tab-pane">
+                        <div class="join_us"></div>
+                        <script type="text/javascript">
+                          $(document).ready(function() {
+                            var $summernote3 = $('.join_us').summernote({
+                              height:500,
+                              minheight:500,
+                              dialogsFade:true,
+                              placeholder:'请输入描述...',
+                              callbacks: {
+                                onImageUpload: function (files) {
+                                  sendFile($summernote3, files[0]);
+                                }
+                              }
+                            });
+
+                            function sendFile($summernote3, file) {
+                              var formData = new FormData();
+                              formData.append("file", file);
+                              $.ajax({
+                                url: '/admin/uploadImg',
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                type: 'POST',
+                                success: function (data) {
+                                  $summernote3.summernote('insertImage', data.url, function ($image) {
+                                    $image.attr('src', data.url);
+                                  });
+                                }
+                              });
+                            }
+                          });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>
+<!--main content end-->
+{% endblock %}
+
+{% block script %}
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="../../public/js/bootstrap.min.js"></script>
+<script src="../../public/js/admin/jquery.scrollTo.min.js"></script>
+<script src="../../public/js/jquery.nicescroll.js" type="text/javascript"></script>
+<!--common script for all pages-->
+<script src="../../public/js/admin/common-scripts.js"></script>
+{% endblock %}

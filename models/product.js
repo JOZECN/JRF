@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const categoriesSchema = require('../schemas/products');
+const productsSchema = require('../schemas/products');
 
 mongoose.Promise = global.Promise;
-module.exports = mongoose.model('Product',categoriesSchema);
+module.exports = mongoose.model('Product',productsSchema);
