@@ -27,12 +27,6 @@
         background-color: #ffffff !important;
         border-color: #CCCCCC !important;
     }
-    .btn-danger {
-        color: #333 !important;
-        background-color: #ffffff !important;
-        border-color: #CCCCCC !important;
-        margin-top: 10px;
-    }
 </style>
 
 {% endblock %}
@@ -60,7 +54,13 @@
             <div class="panel-body">
                 <div class="tab-content">
                     <div id="about_company" class="tab-pane active">
-                        <div class="about_company"></div>
+                        <div class="about_company">
+                            {% for content in data %}
+                                {% if content.title=='about_company' %}
+                                    {% autoescape %}{{content.content}}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                         <button class="btn btn-danger post-about_company">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
@@ -91,14 +91,19 @@
                                     $image.attr('src', data.url);
                                   });
                                 }
-                              });
-
+                              })
                             }
                           });
                         </script>
                     </div>
                     <div id="contact_us" class="tab-pane">
-                        <div class="contact_us"></div>
+                        <div class="contact_us">
+                            {% for content in data %}
+                                {% if content.title=='contact_us' %}
+                                    {% autoescape %}{{content.content}}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                         <button class="btn btn-danger post-contact_us">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
@@ -129,13 +134,19 @@
                                     $image.attr('src', data.url);
                                   });
                                 }
-                              });
+                              })
                             }
                           });
                         </script>
                     </div>
                     <div id="join_us" class="tab-pane">
-                        <div class="join_us"></div>
+                        <div class="join_us">
+                            {% for content in data %}
+                                {% if content.title=='join_us' %}
+                                    {% autoescape %}{{content.content}}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                         <button class="btn btn-danger post-join_us">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
@@ -166,7 +177,7 @@
                                     $image.attr('src', data.url);
                                   });
                                 }
-                              });
+                              })
                             }
                           });
                         </script>

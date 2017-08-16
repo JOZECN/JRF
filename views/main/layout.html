@@ -94,21 +94,21 @@
                 <ul>
                     <li class="site-logo"><a href="/"><img src="../../public/img/logo.jpg"><span>开信财富</span></a></li>
                     <li><a href="/">首页</a></li>
-                    <li><a href="/product">理财产品</a>
+                    <li><a href="#">理财产品</a>
                         <ul>
-                            <li><a href="#">投资产品</a></li>
-                            <li><a href="#">保险产品</a></li>
+                            <li><a href="/product" onclick=window.open('/product','_parent')>投资产品</a></li>
+                            <li><a href="/product" onclick=window.open('/product','_parent')>保险产品</a></li>
                         </ul>
                     </li>
                     <li><a href="#">开信海外</a>
                         <ul>
-                            <li><a href="">海外医疗</a></li>
-                            <li><a href="">海外房产</a></li>
-                            <li><a href="">海外投资</a></li>
-                            <li><a href="">海外移民</a></li>
+                            <li><a href="#">海外医疗</a></li>
+                            <li><a href="#">海外房产</a></li>
+                            <li><a href="#">海外投资</a></li>
+                            <li><a href="#">海外移民</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">理财顾问</a></li>
+                    <li><a href="/adviser" onclick=window.open('/adviser','_parent')>理财顾问</a></li>
                     <li><a href="#">我的开信</a>
                         <ul>
                             {% if userInfo._id %}
@@ -116,10 +116,10 @@
                                 <li><a href="/admin" onclick=window.open('/admin','_parent')>开信后台</a></li>
                                 {% endif %}
                                 <li><a href="/user" onclick=window.open('/user','_parent')>我的账户</a></li>
-                                <li><a href="">我的消息</a></li>
-                                <li><a href="">交易记录</a></li>
-                                <li><a href="">账户安全</a></li>
-                                <li><a href="">账户安全</a></li>
+                                <li><a href="#">我的消息</a></li>
+                                <li><a href="#">交易记录</a></li>
+                                <li><a href="#">账户安全</a></li>
+                                <li><a href="#">账户安全</a></li>
                                 <li><a href="javascript:;" id="logout">注销登录</a></li>
                             {% else %}
                                 <li><a href="/login" onclick=window.open('/login','_parent')>登录/注册</a></li>

@@ -32,11 +32,20 @@
         color: #FFFFFF;
     }
     .about-content {
+        margin-bottom: 20px;
         padding: 20px;
         background-color: #FFFFFF;
         border: 1px #dddddd solid;
         border-radius: 5px;
         text-align: left;
+    }
+    .about-content .title {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #e95a44;
+        border-bottom: 2px #e95a44 solid;
     }
 </style>
 <div class="row about-main">
@@ -65,18 +74,102 @@
             </div>
             <div class="col-sm-9">
                 <div class="about-content">
-                    <div class="block guide-block">guide</div>
-                    <div class="block investor-block" style="display: none">investor</div>
-                    <div class="block recharge-block" style="display: none">recharge</div>
-                    <div class="block regulation-block" style="display: none">regulation</div>
-                    <div class="block protect-block" style="display: none">protect</div>
-                    <div class="block term-block" style="display: none">term</div>
-                    <div class="block about-company-block" style="display: none">company</div>
-                    <div class="block contact-us-block" style="display: none">contact-us</div>
-                    <div class="block join-us-block" style="display: none">join-us</div>
-                    <div class="block about-site-block" style="display: none">about-site</div>
-                    <div class="block site-theory-block" style="display: none">site-theory</div>
-                    <div class="block rate-block" style="display: none">rate</div>
+                    <div class="block guide-block">
+                        <p class="title">新手指南</p>
+                        {% for content in data %}
+                        {% if content.title=='guide' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block investor-block" style="display: none">
+                        <p class="title">投资人必读</p>
+                        {% for content in data %}
+                        {% if content.title=='investor' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block recharge-block" style="display: none">
+                        <p class="title">充值提现必读</p>
+                        {% for content in data %}
+                        {% if content.title=='recharge' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block regulation-block" style="display: none">
+                        <p class="title">政策法规</p>
+                        {% for content in data %}
+                        {% if content.title=='regulation' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block protect-block" style="display: none">
+                        <p class="title">隐私保护</p>
+                        {% for content in data %}
+                        {% if content.title=='protect' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block term-block" style="display: none">
+                        <p class="title">条款免责</p>
+                        {% for content in data %}
+                        {% if content.title=='term' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block about-company-block" style="display: none">
+                        <p class="title">公司简介</p>
+                        {% for content in data %}
+                        {% if content.title=='about_company' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block contact-us-block" style="display: none">
+                        <p class="title">联系我们</p>
+                        {% for content in data %}
+                        {% if content.title=='contact_us' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block join-us-block" style="display: none">
+                        <p class="title">加入我们</p>
+                        {% for content in data %}
+                        {% if content.title=='join_us' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block about-site-block" style="display: none">
+                        <p class="title">平台简介</p>
+                        {% for content in data %}
+                        {% if content.title=='about_site' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block site-theory-block" style="display: none">
+                        <p class="title">平台原理</p>
+                        {% for content in data %}
+                        {% if content.title=='site_theory' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="block rate-block" style="display: none">
+                        <p class="title">费率</p>
+                        {% for content in data %}
+                        {% if content.title=='rate' %}
+                        {% autoescape %}{{content.content}}{% endautoescape %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

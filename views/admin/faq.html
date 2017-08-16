@@ -9,6 +9,9 @@
 
 <script type="text/javascript" src="../../public/js/jquery-3.2.1.min.js"></script>
 
+<script src="../../public/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+
 <link rel="stylesheet" href="../../public/css/summernote.css" />
 <script type="text/javascript" src="../../public/js/summernote.js"></script>
 <link href="../../public/css/font/summernote.eot">
@@ -23,11 +26,6 @@
         color: #333 !important;
         background-color: #ffffff !important;
         border-color: #CCCCCC !important;
-    }
-    .btn-danger {
-        float: right;
-        margin-right: 15px;
-        margin-top: 1px;
     }
     @media (max-width: 768px) {
         .btn {
@@ -56,13 +54,19 @@
                     <li class="">
                         <a data-toggle="tab" href="#recharge">充值提现必读</a>
                     </li>
-                    <button class="btn btn-danger">保存</button>
                 </ul>
             </header>
             <div class="panel-body">
                 <div class="tab-content">
                     <div id="guide" class="tab-pane active">
-                        <div class="guide"></div>
+                        <div class="guide">
+                            {% for content in data %}
+                            {% if content.title=='guide' %}
+                            {% autoescape %}{{content.content}}{% endautoescape %}
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-danger post-guide">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote = $('.guide').summernote({
@@ -99,7 +103,14 @@
                         </script>
                     </div>
                     <div id="investor" class="tab-pane">
-                        <div class="investor"></div>
+                        <div class="investor">
+                            {% for content in data %}
+                            {% if content.title=='investor' %}
+                            {% autoescape %}{{content.content}}{% endautoescape %}
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-danger post-investor">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote2 = $('.investor').summernote({
@@ -135,7 +146,14 @@
                         </script>
                     </div>
                     <div id="recharge" class="tab-pane">
-                        <div class="recharge"></div>
+                        <div class="recharge">
+                            {% for content in data %}
+                            {% if content.title=='recharge' %}
+                            {% autoescape %}{{content.content}}{% endautoescape %}
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-danger post-recharge">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote3 = $('.recharge').summernote({
@@ -185,4 +203,74 @@
 <script src="../../public/js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--common script for all pages-->
 <script src="../../public/js/admin/common-scripts.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.post-guide').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'guide',
+          content: $('.guide').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+
+    $('.post-investor').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'investor',
+          content: $('.investor').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+
+    $('.post-recharge').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'recharge',
+          content: $('.recharge').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+  })
+</script>
 {% endblock %}

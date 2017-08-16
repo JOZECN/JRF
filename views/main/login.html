@@ -117,6 +117,24 @@
     </style>
 </head>
 <body>
+{% if userInfo._id %}
+<div class="login_cover">
+    <script type="text/javascript">
+        $(function () {
+          sweetAlert({
+            title: '您已登录！',
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "返回首页",
+            closeOnConfirm: false
+          }, function(){
+            window.location.href='http://'+(window.location.host).toString();
+          })
+        })
+    </script>
+</div>
+{% endif %}
 <div class="main-body">
     <div class="banner-wrap">
         <a href="/" class="site-title">
@@ -220,12 +238,18 @@
         },
         dataType: 'json',
         success: function (data) {
-          alert(data.message);
-          if (!data.code) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: true,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "点击登录",
+            closeOnConfirm: false
+          }, function(){
             $('#register .box input').css('value','');
             $('#register').hide();
             $('#login').show();
-          }
+          })
         }
       });
     });
@@ -256,7 +280,7 @@
             confirmButtonText: "返回上一页",
             closeOnConfirm: false
           }, function(){
-            self.location=document.referrer;
+            window.location.href='http://'+(window.location.host).toString();
           });
         }
       });

@@ -120,6 +120,9 @@ renderAdminTable(News,'news_list',10000,['category','user']);
 
 const Content = require('../models/content');
 renderAdminTable(Content,'about_us',3);
+renderAdminTable(Content,'about_site',3);
+renderAdminTable(Content,'user_agreement',3);
+renderAdminTable(Content,'faq',3);
 
 /*  router for admin page   */
 
@@ -209,8 +212,8 @@ router.get('/question_list',function(req,res,next){
   Question.find().then(function(question){
     data.question = question;
   }).then(function () {
-    Answer.find().then(function (answer) {
-      data.anwser = answer;
+    Answer.find().populate(['product']).then(function (answer) {
+      data.answer = answer;
     }).then(function () {
       console.log(data);
       res.render('admin/question_list', data);
@@ -224,28 +227,58 @@ router.get('/question_add', function(req,res,next){
   });
 });
 
-router.get('/about_us', function(req,res,next){
-  res.render('admin/about_us',{
-    userInfo:req.userInfo
-  });
+router.get('/question_edit', function(req,res,next){
+  var id=req.query.id;
+
+  Question.findOne({
+    _id:id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/error',{
+        userInfo:req.userInfo,
+        message:'该问题id已被删除了。'
+      });
+      return;
+    }else{
+      res.render('admin/question_edit',{
+        userInfo:req.userInfo,
+        data: rs
+      });
+    }
+  })
 });
 
-router.get('/about_site', function(req,res,next){
-  res.render('admin/about_site',{
-    userInfo:req.userInfo
-  });
+router.get('/answer_add', function(req,res,next){
+  Product.find().then(function(product){
+    res.render('admin/answer_add',{
+      userInfo: req.userInfo,
+      product: product
+    })
+  })
 });
 
-router.get('/user_agreement', function(req,res,next){
-  res.render('admin/user_agreement',{
-    userInfo:req.userInfo
-  });
-});
+router.get('/answer_edit', function(req,res,next){
+  var id=req.query.id;
 
-router.get('/faq', function(req,res,next){
-  res.render('admin/faq',{
-    userInfo:req.userInfo
-  });
+  Answer.findOne({
+    _id: id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/error',{
+        userInfo:req.userInfo,
+        message:'该答案id已被删除了。'
+      });
+      return;
+    }else {
+      Product.find().then(function (product) {
+        res.render('admin/answer_edit', {
+          userInfo: req.userInfo,
+          product: product,
+          data: rs
+        })
+      })
+    }
+  })
 });
 
 /*  function for admin data  */
@@ -265,6 +298,12 @@ function renderAdminTable(obj,type,limit,_query){
 
       if(type=='about_us'){
         var newObj = _query ? obj.find({"$or":[{"title":"about_company"},{"title":"contact_us"},{"title":"join_us"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"about_company"},{"title":"contact_us"},{"title":"join_us"}]}).sort({_id: -1}).limit(limit).skip(skip);
+      }else if(type=='about_site'){
+        var newObj = _query ? obj.find({"$or":[{"title":"about_site"},{"title":"site_theory"},{"title":"rate"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"about_site"},{"title":"site_theory"},{"title":"rate"}]}).sort({_id: -1}).limit(limit).skip(skip);
+      }else if(type=='user_agreement'){
+        var newObj = _query ? obj.find({"$or":[{"title":"regulation"},{"title":"protect"},{"title":"term"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"regulation"},{"title":"protect"},{"title":"term"}]}).sort({_id: -1}).limit(limit).skip(skip);
+      }else if(type=='faq'){
+        var newObj = _query ? obj.find({"$or":[{"title":"guide"},{"title":"investor"},{"title":"recharge"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"guide"},{"title":"investor"},{"title":"recharge"}]}).sort({_id: -1}).limit(limit).skip(skip);
       }else if (type=='product_category_list'){
         var newObj = _query ? obj.find({'sort': 'product'}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({'sort': 'product'}).sort({_id: -1}).limit(limit).skip(skip);
       }else if (type=='news_category_list'){

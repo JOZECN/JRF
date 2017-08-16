@@ -9,6 +9,9 @@
 
 <script type="text/javascript" src="../../public/js/jquery-3.2.1.min.js"></script>
 
+<script src="../../public/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+
 <link rel="stylesheet" href="../../public/css/summernote.css" />
 <script type="text/javascript" src="../../public/js/summernote.js"></script>
 <link href="../../public/css/font/summernote.eot">
@@ -23,11 +26,6 @@
         color: #333 !important;
         background-color: #ffffff !important;
         border-color: #CCCCCC !important;
-    }
-    .btn-danger {
-        float: right;
-        margin-right: 15px;
-        margin-top: 1px;
     }
     @media (max-width: 768px) {
         .btn {
@@ -56,13 +54,19 @@
                     <li class="">
                         <a data-toggle="tab" href="#rate">费率</a>
                     </li>
-                    <button class="btn btn-danger">保存</button>
                 </ul>
             </header>
             <div class="panel-body">
                 <div class="tab-content">
                     <div id="about_site" class="tab-pane active">
-                        <div class="about_site"></div>
+                        <div class="about_site">
+                            {% for content in data %}
+                                {% if content.title=='about_site' %}
+                                    {% autoescape %}{{content.content}}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-danger post-about_site">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote = $('.about_site').summernote({
@@ -99,7 +103,14 @@
                         </script>
                     </div>
                     <div id="site_theory" class="tab-pane">
-                        <div class="site_theory"></div>
+                        <div class="site_theory">
+                            {% for content in data %}
+                                {% if content.title=='site_theory' %}
+                                    {% autoescape %}{{content.content}}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-danger post-site_theory">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote2 = $('.site_theory').summernote({
@@ -135,7 +146,14 @@
                         </script>
                     </div>
                     <div id="rate" class="tab-pane">
-                        <div class="rate"></div>
+                        <div class="rate">
+                            {% for content in data %}
+                                {% if content.title=='rate' %}
+                                    {% autoescape %}{{content.content}}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-danger post-rate">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote3 = $('.rate').summernote({
@@ -185,4 +203,74 @@
 <script src="../../public/js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--common script for all pages-->
 <script src="../../public/js/admin/common-scripts.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.post-about_site').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'about_site',
+          content: $('.about_site').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+
+    $('.post-site_theory').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'site_theory',
+          content: $('.site_theory').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+
+    $('.post-rate').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'rate',
+          content: $('.rate').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+  })
+</script>
 {% endblock %}

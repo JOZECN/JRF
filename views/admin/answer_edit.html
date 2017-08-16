@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
 
 <style type="text/css">
-    .category-select {
+    .product-select {
         width: 100%;
     }
     .form-control {
@@ -29,33 +29,25 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        添加新问题
+                        修改答案
                     </header>
                     <div class="panel-body">
                         <div class=" form">
                             <form class="cmxform form-horizontal tasi-form" id="commentForm" method="get" action="#">
                                 <div class="form-group ">
-                                    <label for="qname" class="control-label col-lg-2">问题名 (必填项)</label>
-                                    <div class="col-lg-6">
-                                        <input class=" form-control" id="qname" name="name" type="text" required />
+                                    <label for="aanswer" class="control-label col-lg-2">问题答案 (必填项)</label>
+                                    <div class="col-lg-10">
+                                        <input class=" form-control" id="aanswer" name="answer" type="text" value="{{data.answer}}" required />
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="qanswerA" class="control-label col-lg-2">选项A</label>
-                                    <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerA" name="answerA" type="text" />
-                                    </div>
-                                    <label for="qanswerB" class="control-label col-lg-2">选项B</label>
-                                    <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerB" name="answerB" type="text" />
-                                    </div>
-                                    <label for="qanswerC" class="control-label col-lg-2">选项C</label>
-                                    <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerC" name="answerC" type="text" />
-                                    </div>
-                                    <label for="qanswerD" class="control-label col-lg-2">选项D</label>
-                                    <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerD" name="answerD" type="text" />
+                                    <label for="aproduct" class="control-label col-lg-2">产品选择 (必选项)</label>
+                                    <div class="col-lg-10" style="padding: 6px 15px 0 15px;">
+                                        <select id="aproduct" name="product" class="product-select"  required>
+                                            {% for product in product %}
+                                            <option value="{{product._id.toString()}}">{{product.name}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -92,13 +84,11 @@
     $('.PostContent').click(function () {
       $.ajax({
         type: 'post',
-        url: '/question/question_add',
+        url: '/question/answer_edit',
         data: {
-          name: $.trim($('#qname').val()),
-          answerA: $.trim($('#qanswerA').val()),
-          answerB: $.trim($('#qanswerB').val()),
-          answerC: $.trim($('#qanswerC').val()),
-          answerD: $.trim($('#qanswerD').val())
+          id: '{{data.id}}',
+          answer: $.trim($('#aanswer').val()),
+          product: $('#aproduct').find("option:selected").attr('value')
         },
         dataType: 'json',
         success: function (data) {

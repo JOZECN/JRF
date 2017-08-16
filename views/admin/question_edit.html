@@ -11,11 +11,8 @@
 <link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
 
 <style type="text/css">
-    .category-select {
-        width: 100%;
-    }
     .form-control {
-        color: #555;
+        color: #555 !important;
     }
 </style>
 {% endblock %}
@@ -29,38 +26,38 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        添加新问题
+                        修改问题
                     </header>
                     <div class="panel-body">
                         <div class=" form">
                             <form class="cmxform form-horizontal tasi-form" id="commentForm" method="get" action="#">
                                 <div class="form-group ">
-                                    <label for="qname" class="control-label col-lg-2">问题名 (必填项)</label>
-                                    <div class="col-lg-6">
-                                        <input class=" form-control" id="qname" name="name" type="text" required />
+                                    <label for="qname" class="control-label col-lg-2">问题名称 (必填项)</label>
+                                    <div class="col-lg-10">
+                                        <input class=" form-control" id="qname" name="name" type="text" value="{{data.name}}" required />
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label for="qanswerA" class="control-label col-lg-2">选项A</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerA" name="answerA" type="text" />
+                                        <input class=" form-control" id="qanswerA" name="answerA" type="text" value="{{data.answerA}}" />
                                     </div>
                                     <label for="qanswerB" class="control-label col-lg-2">选项B</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerB" name="answerB" type="text" />
+                                        <input class=" form-control" id="qanswerB" name="answerB" type="text" value="{{data.answerB}}" />
                                     </div>
                                     <label for="qanswerC" class="control-label col-lg-2">选项C</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerC" name="answerC" type="text" />
+                                        <input class=" form-control" id="qanswerC" name="answerC" type="text" value="{{data.answerC}}" />
                                     </div>
                                     <label for="qanswerD" class="control-label col-lg-2">选项D</label>
                                     <div class="col-lg-4">
-                                        <input class=" form-control" id="qanswerD" name="answerD" type="text" />
+                                        <input class=" form-control" id="qanswerD" name="answerD" type="text" value="{{data.answerD}}" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-danger PostContent" type="button">保存</button>
+                                        <a class="btn btn-danger PostContent">保存</a>
                                     </div>
                                 </div>
                             </form>
@@ -88,39 +85,38 @@
 <script src="../../public/js/admin/form-validation-script.js"></script>
 
 <script type="text/javascript">
-  $(function() {
-    $('.PostContent').click(function () {
-      $.ajax({
-        type: 'post',
-        url: '/question/question_add',
-        data: {
-          name: $.trim($('#qname').val()),
-          answerA: $.trim($('#qanswerA').val()),
-          answerB: $.trim($('#qanswerB').val()),
-          answerC: $.trim($('#qanswerC').val()),
-          answerD: $.trim($('#qanswerD').val())
-        },
-        dataType: 'json',
-        success: function (data) {
-          var type='success';
-          var showCancelButton=false;
-          if(data.code!=0){
-            type='warning';
-            showCancelButton=true;
-          }
-          sweetAlert({
-            title: data.message,
-            type: type,
-            showCancelButton: showCancelButton,
-            confirmButtonColor: "#0083ff",
-            confirmButtonText: "返回问题列表",
-            closeOnConfirm: false
-          }, function(){
-            window.location.href='http://'+(window.location.host).toString()+"/admin/question_list";
-          });
+  $('.PostContent').click(function () {
+    $.ajax({
+      type: 'post',
+      url: '/question/question_edit',
+      data: {
+        id:'{{data.id}}',
+        name: $.trim($('#qname').val()),
+        answerA: $.trim($('#qanswerA').val()),
+        answerB: $.trim($('#qanswerB').val()),
+        answerC: $.trim($('#qanswerC').val()),
+        answerD: $.trim($('#qanswerD').val())
+      },
+      dataType: 'json',
+      success: function (data) {
+        var type='success';
+        var showCancelButton=false;
+        if(data.code!=0){
+          type='warning';
+          showCancelButton=true;
         }
-      });
+        sweetAlert({
+          title: data.message,
+          type: type,
+          showCancelButton: showCancelButton,
+          confirmButtonColor: "#0083ff",
+          confirmButtonText: "返回问答列表",
+          closeOnConfirm: false
+        }, function(){
+          window.location.href='http://'+(window.location.host).toString()+"/admin/question_list";
+        });
+      }
     });
-  })
+  });
 </script>
 {% endblock %}
