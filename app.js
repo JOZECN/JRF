@@ -34,6 +34,9 @@ app.use(function(req,res,next){
 });
 
 app.use('/product',require('./routers/product'));
+app.use('/news',require('./routers/news'));
+app.use('/content',require('./routers/content'));
+app.use('/question',require('./routers/question'));
 app.use('/user',require('./routers/user'));
 app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));

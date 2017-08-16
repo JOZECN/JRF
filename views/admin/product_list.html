@@ -7,6 +7,9 @@
 <link href="../../public/css/admin/style.css" rel="stylesheet">
 <link href="../../public/css/admin/style-responsive.css" rel="stylesheet" />
 
+<script src="../../public/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+
 <style type="text/css">
     .hidden-phone {
         min-width: 60px;
@@ -40,13 +43,13 @@
                         {% for product in data %}
                         <tr class="odd gradeX">
                             <td>{{product.name}}</td>
-                            <td class="hidden-phone">{{product.category}}</td>
-                            <td class="hidden-phone">{{product.user}}</td>
+                            <td class="hidden-phone">{{product.category.name}}</td>
+                            <td class="hidden-phone">{{product.user.username}}</td>
                             <td class="center hidden-phone">{{product.date}}</td>
                             <td class="hidden-phone"><span class="label label-success">{{product.view}}</span></td>
                             <td>
                                 <a class="btn btn-primary btn-xs" href="/admin/product_edit?id={{product._id.toString()}}"><i class="icon-pencil"></i></a>
-                                <button class="btn btn-danger btn-xs" name="{{product._id.toString()}}"><i class="icon-trash "></i></button>
+                                <a class="btn btn-danger btn-xs deleteBtn" name="{{product._id.toString()}}"><i class="icon-trash "></i></a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -73,4 +76,43 @@
 <script src="../../public/js/admin/common-scripts.js"></script>
 <!--script for this page only-->
 <script src="../../public/js/admin/dynamic-table.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.deleteBtn').click(function () {
+      var id = $(this).attr('name');
+      sweetAlert({
+        title: '确认删除该产品? ',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: "#0083ff",
+        confirmButtonText: "确认!",
+        closeOnConfirm: false
+      }, function () {
+        $.ajax({
+          type: 'post',
+          url: '/product/product_delete',
+          data: {
+            id: id
+          },
+          dataType: "json",
+          success: function (data) {
+            if (data.code == 0) {
+              sweetAlert({
+                title: data.message,
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: "#0083ff",
+                confirmButtonText: "返回产品列表",
+                closeOnConfirm: false
+              }, function () {
+                history.go(0);
+              });
+            }
+          }
+        });
+      });
+    })
+  })
+</script>
 {% endblock %}

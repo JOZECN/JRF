@@ -17,6 +17,7 @@
     "body-parser": "^1.17.2",
     "cookies": "^0.7.0",
     "express": "^4.15.4",
+    "formidable": "^1.1.1",
     "mongoose": "^4.11.6",
     "swig": "^1.4.2"
   }

@@ -16,7 +16,10 @@ module.exports = new mongoose.Schema({
   dealline: String,
   qualify: String,
   area: String,
-  user: String,
+  user: {
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User'
+  },
   date: String,
   view: Number
 });

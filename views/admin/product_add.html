@@ -42,7 +42,7 @@
                                     <label for="pcategory" class="control-label col-lg-2">所属分类 (必选项)</label>
                                     <div class="col-lg-2" style="padding: 8px 15px;">
                                         <select id="pcategory" name="category" class="category-select" required>
-                                            {% for category in categories %}
+                                            {% for category in category %}
                                             <option value="{{category._id.toString()}}">{{category.name}}</option>
                                             {% endfor %}
                                         </select>
@@ -151,12 +151,13 @@
           dealline: $.trim($('#pdealline').val()),
           qualify: $.trim($('#pqualify').val()),
           area: $.trim($('#parea').val()),
+          user: '{{userInfo._id.toString()}}'
         },
         dataType: 'json',
         success: function (data) {
           var type='success';
           var showCancelButton=false;
-          if(data.code==1||data.code==2||data.code==3){
+          if(data.code!=0){
             type='warning';
             showCancelButton=true;
           }

@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function(req,res,next){
-  res.render('admin/index');
+var responseData=null;
+router.use(function(req,res,next){
+  responseData={
+    code:0,
+    message:''
+  };
+  next();
 });
 
 router.get('/404', function(req,res,next){
@@ -97,65 +102,153 @@ router.get('/widget', function(req,res,next){
   res.render('admin/widget');
 });
 
-/*  router for admin page   */
-
-router.get('/product_add', function(req,res,next){
-  res.render('admin/product_add');
-});
-
-router.get('/product_category', function(req,res,next){
-  res.render('admin/product_category');
-});
-
-router.get('/category_add', function(req,res,next){
-  res.render('admin/category_add');
-});
-
-router.get('/user_list', function(req,res,next){
-  res.render('admin/user_list');
-});
-
-router.get('/questionnaire_list', function(req,res,next){
-  res.render('admin/questionnaire_list');
-});
-
-router.get('/questionnaire_add', function(req,res,next){
-  res.render('admin/questionnaire_add');
-});
-
-router.get('/about_us', function(req,res,next){
-  res.render('admin/about_us');
-});
-
-router.get('/about_site', function(req,res,next){
-  res.render('admin/about_site');
-});
-
-router.get('/user_agreement', function(req,res,next){
-  res.render('admin/user_agreement');
-});
-
-router.get('/faq', function(req,res,next){
-  res.render('admin/faq');
-});
-
-/*  function for admin data  */
+const Question=require('../models/question');
+const Answer=require('../models/answer');
 
 const User=require('../models/user');
 renderAdminTable(User,'user_list',10);
 
 const Category=require('../models/category');
-renderAdminTable(Category,'product_category',5);
-renderAdminTable(Category,'news_category',5);
+renderAdminTable(Category,'product_category_list',100);
+renderAdminTable(Category,'news_category_list',100);
 
 const Product = require('../models/product');
-renderAdminTable(Product,'product_list',5);
+renderAdminTable(Product,'product_list',10000,['category','user']);
+
+const News = require('../models/news');
+renderAdminTable(News,'news_list',10000,['category','user']);
 
 const Content = require('../models/content');
-renderAdminTable(Content,'about_us',20);
-renderAdminTable(Content,'about_site',20);
-renderAdminTable(Content,'user_agreement',20);
-renderAdminTable(Content,'faq',20);
+renderAdminTable(Content,'about_us',3);
+
+/*  router for admin page   */
+
+router.get('/', function(req,res,next){
+  res.render('admin/index',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/product_add', function(req,res,next){
+  Category.find({'sort': 'product'}).then(function(category){
+    res.render('admin/product_add',{
+      userInfo:req.userInfo,
+      category:category
+    });
+  })
+});
+
+router.get('/product_category_add', function(req,res,next){
+  res.render('admin/product_category_add',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/product_category_edit', function(req,res,next){
+  var id=req.query.id;
+
+  Category.findOne({
+    _id:id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/error',{
+        userInfo:req.userInfo,
+        message:'该分类id已被删除了。'
+      });
+      return;
+    }else{
+      res.render('admin/product_category_edit',{
+        userInfo:req.userInfo,
+        data: rs
+      });
+    }
+  })
+});
+
+router.get('/news_add', function(req,res,next){
+  Category.find({'sort': 'news'}).then(function(category){
+    res.render('admin/news_add',{
+      userInfo:req.userInfo,
+      category:category
+    });
+  })
+});
+
+router.get('/news_category_add', function(req,res,next){
+  res.render('admin/news_category_add',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/news_category_edit', function(req,res,next){
+  var id=req.query.id;
+
+  Category.findOne({
+    _id:id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/error',{
+        userInfo:req.userInfo,
+        message:'该分类id已被删除了。'
+      });
+      return;
+    }else{
+      res.render('admin/news_category_edit',{
+        userInfo:req.userInfo,
+        data: rs
+      });
+    }
+  })
+});
+
+router.get('/question_list',function(req,res,next){
+  var data={
+    userInfo:req.userInfo
+  };
+
+  Question.find().then(function(question){
+    data.question = question;
+  }).then(function () {
+    Answer.find().then(function (answer) {
+      data.anwser = answer;
+    }).then(function () {
+      console.log(data);
+      res.render('admin/question_list', data);
+    })
+  })
+});
+
+router.get('/question_add', function(req,res,next){
+  res.render('admin/question_add',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/about_us', function(req,res,next){
+  res.render('admin/about_us',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/about_site', function(req,res,next){
+  res.render('admin/about_site',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/user_agreement', function(req,res,next){
+  res.render('admin/user_agreement',{
+    userInfo:req.userInfo
+  });
+});
+
+router.get('/faq', function(req,res,next){
+  res.render('admin/faq',{
+    userInfo:req.userInfo
+  });
+});
+
+/*  function for admin data  */
 
 function renderAdminTable(obj,type,limit,_query){
   router.get('/'+type+'/', function (req,res,next) {
@@ -170,9 +263,18 @@ function renderAdminTable(obj,type,limit,_query){
 
       var skip=(page-1)*limit;
 
-      var newObj = _query ? obj.find().sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find().sort({_id: -1}).limit(limit).skip(skip);
+      if(type=='about_us'){
+        var newObj = _query ? obj.find({"$or":[{"title":"about_company"},{"title":"contact_us"},{"title":"join_us"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"about_company"},{"title":"contact_us"},{"title":"join_us"}]}).sort({_id: -1}).limit(limit).skip(skip);
+      }else if (type=='product_category_list'){
+        var newObj = _query ? obj.find({'sort': 'product'}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({'sort': 'product'}).sort({_id: -1}).limit(limit).skip(skip);
+      }else if (type=='news_category_list'){
+        var newObj = _query ? obj.find({'sort': 'news'}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({'sort': 'news'}).sort({_id: -1}).limit(limit).skip(skip);
+      }else {
+        var newObj = _query ? obj.find().sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find().sort({_id: -1}).limit(limit).skip(skip);
+      }
 
       newObj.then(function(data){
+        console.log(data);
         res.render('admin/'+type,{
           type:type,
           userInfo:req.userInfo,
@@ -187,14 +289,173 @@ function renderAdminTable(obj,type,limit,_query){
   });
 }
 
-router.get('/about_us',function(req,res,next){
-  var contentId=req.query.contentId||'';
-  Content.findOne({
-    _id:contentId
-  }).then(function(content){
-    responseData.data=content;
+router.post('/category_add',function(req,res,next){
+  var name=req.body.name;
+  var description=req.body.description;
+  var sort=req.body.sort;
+
+  if(name==''){
+    responseData.code=1;
+    responseData.message='分类名不能为空！';
     res.json(responseData);
+    return;
+  }
+
+  if(description==''){
+    responseData.code=2;
+    responseData.message='分类描述不能为空！';
+    res.json(responseData);
+    return;
+  }
+
+  Category.findOne({
+    name:name
+  }).then(function(rs){
+    if(rs){
+      responseData.code=3;
+      responseData.message='分类已存在！';
+      res.json(responseData);
+      return;
+    }else{
+      new Category({
+        name: name,
+        description: description,
+        sort: sort
+      }).save().then(function () {
+        responseData.code=0;
+        responseData.message='添加成功！';
+        res.json(responseData);
+        return;
+      });
+    }
   })
+});
+
+router.post('/category_edit',function(req,res,next){
+  var id=req.body.id;
+  var name=req.body.name;
+  var description=req.body.description;
+  var sort=req.body.sort;
+
+  if(name==''){
+    responseData.code = 1;
+    responseData.message ='分类名不能为空！';
+    res.json(responseData);
+    return;
+  }
+
+  if(description==''){
+    responseData.code = 2;
+    responseData.message ='分类描述不能为空！';
+    res.json(responseData);
+    return;
+  }
+
+  Category.findOne({
+    _id:id
+  }).then(function(rs) {
+    if (!rs) {
+      responseData.code = 3;
+      responseData.message = '该分类ID不存在！';
+      res.json(responseData);
+      return;
+    } else {
+      return Category.update({
+        _id: id
+      }, {
+        name: name,
+        description: description,
+        sort: sort
+      });
+    }
+  }).then(function () {
+    responseData.code = 0;
+    responseData.message='分类修改成功！';
+    res.json(responseData);
+    return;
+  })
+});
+
+router.post('/category_delete',function(req,res,next){
+  var id=req.body.id;
+
+  Category.remove({
+    _id:id
+  }).then(function(){
+    responseData.code=0;
+    responseData.message='分类删除成功! ';
+    res.json(responseData);
+    return;
+  });
+});
+
+router.get('/product_edit', function(req,res,next){
+  var id=req.query.id;
+
+  Product.findOne({
+    _id:id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/error',{
+        userInfo:req.userInfo,
+        message:'该产品ID已被删除！'
+      });
+      return;
+    }else{
+      Category.find().then(function(category){
+        res.render('admin/product_edit',{
+          userInfo:req.userInfo,
+          category:category,
+          data: rs
+        });
+      })
+    }
+  })
+});
+
+router.get('/news_edit', function(req,res,next){
+  var id=req.query.id;
+
+  News.findOne({
+    _id:id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/error',{
+        userInfo:req.userInfo,
+        message:'该资讯ID已被删除！'
+      });
+      return;
+    }else{
+      Category.find().then(function(category){
+        res.render('admin/news_edit',{
+          userInfo:req.userInfo,
+          category:category,
+          data: rs
+        });
+      })
+    }
+  })
+});
+
+var formidable = require('formidable');
+router.post('/uploadImg', function(req, res, next) {
+  var form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.uploadDir = __dirname + '/../public/upload/image';
+  form.parse(req, function (err, fields, files) {
+    if (err) {
+      throw err;
+    }
+    var image = files.file;
+    var path = image.path;
+    path = path.replace('/\\/g', '/');
+    var url = '/../public/upload/image' + path.substr(path.lastIndexOf('/'), path.length);
+    var info = {
+      "error": 0,
+      "url": url
+    };
+    res.send(info);
+  });
 });
 
 module.exports = router;

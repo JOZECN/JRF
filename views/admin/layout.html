@@ -44,7 +44,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="../../public/img/avatar1_small.jpg">
-                        <span class="username">JOZECN</span>
+                        <span class="username">{{userInfo.username}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -52,7 +52,7 @@
                         <li><a href="#"><i class=" icon-suitcase"></i> 简介</a></li>
                         <li><a href="#"><i class="icon-cog"></i> 设置</a></li>
                         <li><a href="#"><i class="icon-bell-alt"></i> 通知</a></li>
-                        <li><a href="login.html"><i class="icon-key"></i> 登出</a></li>
+                        <li><a id="logout" style="cursor: pointer;"><i class="icon-key"></i> 登出</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -81,7 +81,7 @@
                     <ul class="sub">
                         <li><a class="" href="/admin/product_list">产品列表</a></li>
                         <li><a class="" href="/admin/product_add">添加产品</a></li>
-                        <li><a class="" href="/admin/product_category">产品分类</a></li>
+                        <li><a class="" href="/admin/product_category_list">产品分类</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -91,9 +91,9 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">资讯列表</a></li>
-                        <li><a class="" href="#">添加资讯</a></li>
-                        <li><a class="" href="#">资讯分类</a></li>
+                        <li><a class="" href="/admin/news_list">资讯列表</a></li>
+                        <li><a class="" href="/admin/news_add">添加资讯</a></li>
+                        <li><a class="" href="/admin/news_category_list">资讯分类</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -103,8 +103,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/admin/questionnaire_list">问题列表</a></li>
-                        <li><a class="" href="/admin/questionnaire_add">添加问题</a></li>
+                        <li><a class="" href="/admin/question_list">问题列表</a></li>
+                        <li><a class="" href="/admin/question_add">添加问题</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -240,6 +240,18 @@
         $("[href='"+pathname+"']").parent().addClass('active');
         $("[href='"+pathname+"']").parent().parent().css('display','block');
         $("[href='"+pathname+"']").parent().parent().parent().addClass('open');
+
+      $('#logout').click(function(){
+        $.ajax({
+          type:'get',
+          url:'/user/logout',
+          success:function(data){
+            if(!data.code){
+              window.location.href='http://'+(window.location.host).toString();
+            }
+          }
+        })
+      });
     })
 </script>
 </body>

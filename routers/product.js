@@ -11,8 +11,8 @@ router.get('/', function(req,res,next){
   });
 });
 
-router.get('/detail', function(req,res,next){
-  res.render('main/detail',{
+router.get('/product_detail', function(req,res,next){
+  res.render('main/product_detail',{
     userInfo:req.userInfo
   });
 });
@@ -52,7 +52,7 @@ router.post('/product_add',function(req,res,next){
     return;
   }
 
-  if(responseData.code!=1&&responseData.code!=2&&responseData.code!=3){
+  if(responseData.code==0){
     new Product({
       name:req.body.name,
       category:req.body.category,
@@ -67,15 +67,92 @@ router.post('/product_add',function(req,res,next){
       qualify:req.body.qualify,
       area:req.body.area,
       date:new Date().toDateString(),
-      user:'',//req.userInfo._id,
+      user:req.body.user,
       view:0
     }).save().then(function(){
-      responseData.code=4;
+      responseData.code=0;
       responseData.message='产品添加成功';
       res.json(responseData);
       return;
     });
   }
+});
+
+router.post('/product_edit',function(req,res,next){
+  var id=req.body.id;
+  var name=req.body.name;
+  var description=req.body.description;
+  var feature=req.body.feature;
+
+  if(name==''){
+    responseData.code=1;
+    responseData.message='产品名称不得为空！';
+    res.json(responseData);
+    return;
+  }
+  if(description==''){
+    responseData.code=2;
+    responseData.message='产品描述不得为空！';
+    res.json(responseData);
+    return;
+  }
+  if(feature==''){
+    responseData.code=3;
+    responseData.message='产品特点不得为空！';
+    res.json(responseData);
+    return;
+  }
+
+  if(responseData.code==0){
+    Product.findOne({
+      _id: id
+    }).then(function (rs) {
+      if(!rs) {
+        responseData.code = 4;
+        responseData.message = '该产品ID不存在！';
+        res.json(responseData);
+        return;
+      }else{
+        return Product.update({
+          _id: id
+        },{
+          name:req.body.name,
+          category:req.body.category,
+          description:req.body.description,
+          feature:req.body.feature,
+          income:req.body.income,
+          company:req.body.company,
+          sort:req.body.sort,
+          time:req.body.time,
+          pay:req.body.pay,
+          dealline:req.body.dealline,
+          qualify:req.body.qualify,
+          area:req.body.area,
+          date:new Date().toDateString(),
+          user:req.body.user,
+          view:Number(rs.view)
+        })
+      }
+    }).then(function(){
+      responseData.code=0;
+      responseData.message='产品修改成功';
+      res.json(responseData);
+      return;
+    });
+  }
+});
+
+router.post('/product_delete',function(req,res,next){
+  var id=req.body.id;
+
+  Product.remove({
+    _id:id
+  }).then(function(){
+    responseData.code=0;
+    responseData.message='产品删除成功! ';
+    res.json(responseData);
+    return;
+  });
 });
 
 module.exports = router;

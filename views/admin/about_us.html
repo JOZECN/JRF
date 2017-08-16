@@ -9,6 +9,9 @@
 
 <script type="text/javascript" src="../../public/js/jquery-3.2.1.min.js"></script>
 
+<script src="../../public/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/css/sweet-alert.css">
+
 <link rel="stylesheet" href="../../public/css/summernote.css" />
 <script type="text/javascript" src="../../public/js/summernote.js"></script>
 <link href="../../public/css/font/summernote.eot">
@@ -25,14 +28,10 @@
         border-color: #CCCCCC !important;
     }
     .btn-danger {
-        float: right;
-        margin-right: 15px;
-        margin-top: 1px;
-    }
-    @media (max-width: 768px) {
-        .btn {
-            margin-bottom: 0;
-        }
+        color: #333 !important;
+        background-color: #ffffff !important;
+        border-color: #CCCCCC !important;
+        margin-top: 10px;
     }
 </style>
 
@@ -56,13 +55,13 @@
                     <li class="">
                         <a data-toggle="tab" href="#join_us">加入我们</a>
                     </li>
-                    <button class="btn btn-danger">保存</button>
                 </ul>
             </header>
             <div class="panel-body">
                 <div class="tab-content">
                     <div id="about_company" class="tab-pane active">
                         <div class="about_company"></div>
+                        <button class="btn btn-danger post-about_company">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote = $('.about_company').summernote({
@@ -100,6 +99,7 @@
                     </div>
                     <div id="contact_us" class="tab-pane">
                         <div class="contact_us"></div>
+                        <button class="btn btn-danger post-contact_us">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote2 = $('.contact_us').summernote({
@@ -136,6 +136,7 @@
                     </div>
                     <div id="join_us" class="tab-pane">
                         <div class="join_us"></div>
+                        <button class="btn btn-danger post-join_us">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote3 = $('.join_us').summernote({
@@ -185,4 +186,74 @@
 <script src="../../public/js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--common script for all pages-->
 <script src="../../public/js/admin/common-scripts.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.post-about_company').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'about_company',
+          content: $('.about_company').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+
+    $('.post-contact_us').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'contact_us',
+          content: $('.contact_us').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+
+    $('.post-join_us').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/content/content_save',
+        data: {
+          title: 'join_us',
+          content: $('.join_us').summernote('code')
+        },
+        dataType: 'json',
+        success: function (data) {
+          sweetAlert({
+            title: data.message,
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+          });
+        }
+      });
+    });
+  })
+</script>
 {% endblock %}

@@ -22,8 +22,8 @@
                     <table class="table table-striped border-top" id="sample_1">
                         <thead>
                         <tr>
-                            <th style="width:8px;">&nbsp;</th>
                             <th>用户名称</th>
+                            <th class="hidden-phone">用户姓名</th>
                             <th class="hidden-phone">手机号码</th>
                             <th class="hidden-phone">邮箱地址</th>
                             <th class="hidden-phone">注册时间</th>
@@ -32,42 +32,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% for user in data %}
                         <tr class="odd gradeX">
-                            <td></td>
-                            <td>赵某某</td>
-                            <td class="hidden-phone">13700000000</td>
-                            <td class="hidden-phone">aaaaaa@qq.com</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone">普通用户</td>
-                            <td class="hidden-phone"><span class="label label-success">9999</span></td>
+                            <td>{{user.username}}</td>
+                            <td class="hidden-phone">{{user.name}}</td>
+                            <td class="hidden-phone">{{user.phoneNum}}</td>
+                            <td class="hidden-phone">{{user.eMail}}</td>
+                            <td class="center hidden-phone">{{user.date}}</td>
+                            <td class="hidden-phone">{% if user.isAdmin %}管理员{% else %}普通用户{% endif %}</td>
+                            <td class="hidden-phone"><span class="label label-success">{{user.view}}</span></td>
                         </tr>
-                        <tr class="odd gradeX">
-                            <td></td>
-                            <td>周某某</td>
-                            <td class="hidden-phone">13700000000</td>
-                            <td class="hidden-phone">aaaaaa@qq.com</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone">VIP</td>
-                            <td class="hidden-phone"><span class="label label-warning">100</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td></td>
-                            <td>钱某某</td>
-                            <td class="hidden-phone">13700000000</td>
-                            <td class="hidden-phone">aaaaaa@qq.com</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone">管理员</td>
-                            <td class="hidden-phone"><span class="label label-danger">10</span></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td></td>
-                            <td>李某某</td>
-                            <td class="hidden-phone">13700000000</td>
-                            <td class="hidden-phone">aaaaaa@qq.com</td>
-                            <td class="center hidden-phone">2017.8.10</td>
-                            <td class="hidden-phone">普通用户</td>
-                            <td class="hidden-phone"><span class="label label-info">300</span></td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </section>

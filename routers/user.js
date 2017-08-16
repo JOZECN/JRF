@@ -4,10 +4,6 @@ const User=require('../models/User');
 
 /* router for user page */
 
-router.get('/', function(req,res,next){
-  res.send('JRF-user');
-});
-
 /*  function for user data  */
 
 var responseData=null;
@@ -55,8 +51,10 @@ router.post('/register',function(req,res,next){
       return;
     }else{
       var user=new User({
-        username:username,
-        password:password
+        username: username,
+        password: password,
+        date: new Date().toDateString(),
+        view: 0
       });
       return user.save();
     }

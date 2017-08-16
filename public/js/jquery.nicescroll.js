@@ -1897,8 +1897,8 @@
               if (mut.type=="attributes") {
                 return ($("body").hasClass("modal-open")) ? self.hide() : self.show();  // Support for Bootstrap modal
               }
-            });  
-            if (document.body.scrollHeight!=self.page.maxh) return self.lazyResize(30);
+            });
+            if (self.page.maxh !== document.body.scrollHeight) return self.lazyResize(30);
           });
           self.observerbody.observe(document.body, {
             childList: true,
