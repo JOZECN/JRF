@@ -118,6 +118,9 @@ renderAdminTable(Product,'product_list',10000,['category','user']);
 const News = require('../models/news');
 renderAdminTable(News,'news_list',10000,['category','user']);
 
+const Slide = require('../models/slide');
+renderAdminTable(Slide,'slide_config',10,['product']);
+
 const Content = require('../models/content');
 renderAdminTable(Content,'about_us',3);
 renderAdminTable(Content,'about_site',3);
@@ -154,7 +157,7 @@ router.get('/product_category_edit', function(req,res,next){
     _id:id
   }).then(function(rs){
     if(!rs){
-      res.render('admin/error',{
+      res.render('admin/404',{
         userInfo:req.userInfo,
         message:'该分类id已被删除了。'
       });
@@ -190,7 +193,7 @@ router.get('/news_category_edit', function(req,res,next){
     _id:id
   }).then(function(rs){
     if(!rs){
-      res.render('admin/error',{
+      res.render('admin/404',{
         userInfo:req.userInfo,
         message:'该分类id已被删除了。'
       });
@@ -234,7 +237,7 @@ router.get('/question_edit', function(req,res,next){
     _id:id
   }).then(function(rs){
     if(!rs){
-      res.render('admin/error',{
+      res.render('admin/404',{
         userInfo:req.userInfo,
         message:'该问题id已被删除了。'
       });
@@ -264,7 +267,7 @@ router.get('/answer_edit', function(req,res,next){
     _id: id
   }).then(function(rs){
     if(!rs){
-      res.render('admin/error',{
+      res.render('admin/404',{
         userInfo:req.userInfo,
         message:'该答案id已被删除了。'
       });
@@ -313,7 +316,7 @@ function renderAdminTable(obj,type,limit,_query){
       }
 
       newObj.then(function(data){
-        console.log(data);
+        //console.log(data);
         res.render('admin/'+type,{
           type:type,
           userInfo:req.userInfo,
@@ -435,7 +438,7 @@ router.get('/product_edit', function(req,res,next){
     _id:id
   }).then(function(rs){
     if(!rs){
-      res.render('admin/error',{
+      res.render('admin/404',{
         userInfo:req.userInfo,
         message:'该产品ID已被删除！'
       });
@@ -459,7 +462,7 @@ router.get('/news_edit', function(req,res,next){
     _id:id
   }).then(function(rs){
     if(!rs){
-      res.render('admin/error',{
+      res.render('admin/404',{
         userInfo:req.userInfo,
         message:'该资讯ID已被删除！'
       });
@@ -476,8 +479,46 @@ router.get('/news_edit', function(req,res,next){
   })
 });
 
+router.get('/slide_config_add', function(req,res,next){
+  Product.find().then(function(product){
+    res.render('admin/slide_config_add',{
+      userInfo: req.userInfo,
+      product: product
+    })
+  })
+});
+
+router.get('/slide_config_edit', function(req,res,next){
+  var id=req.query.id;
+
+  Slide.findOne({
+    _id:id
+  }).then(function(rs){
+    if(!rs){
+      res.render('admin/404',{
+        userInfo:req.userInfo,
+        message:'该轮播id已被删除了。'
+      });
+      return;
+    }else{
+      Product.find().then(function(product){
+        res.render('admin/slide_config_edit',{
+          userInfo: req.userInfo,
+          product: product,
+          data: rs
+        })
+      })
+    }
+  })
+});
+
 var formidable = require('formidable');
 router.post('/uploadImg', function(req, res, next) {
+  var info = {
+    error: 0,
+    url: ''
+  };
+
   var form = new formidable.IncomingForm();
   form.keepExtensions = true;
   form.uploadDir = __dirname + '/../public/upload/image';
@@ -486,15 +527,16 @@ router.post('/uploadImg', function(req, res, next) {
       throw err;
     }
     var image = files.file;
-    var path = image.path;
-    path = path.replace('/\\/g', '/');
-    var url = '/../public/upload/image' + path.substr(path.lastIndexOf('/'), path.length);
-    var info = {
-      "error": 0,
-      "url": url
-    };
+    if(image.size>1024*512){
+      info.error=1;
+    }else {
+      var path = image.path;
+      path = path.replace('/\\/g', '/');
+      info.url = '/../public/upload/image' + path.substr(path.lastIndexOf('/'), path.length);
+      info.error=0;
+    }
     res.send(info);
-  });
+  })
 });
 
 module.exports = router;

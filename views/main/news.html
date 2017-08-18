@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<style type="text/css">
+    .main_header {
+        opacity: 1;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.93);
+    }
+    .news-main {
+        margin-top: 70px;
+    }
+</style>
+<div class="row news-main">
+    <div class="work_area">
+        <div class="container">
+            <div class="row">
+                <div class="work_section">
+                    <h1 class="wow bounceInLeft">财富 <span>产业资讯</span></h1>
+                    <div class="col-md-12 wow bounceInRight animated">
+                        <div class="bs-example">
+                            <ul class="nav nav-tabs">
+                                {% for newsCategory in newsCategory %}
+                                <li class="{% if loop.first %}active{% endif %}"><a data-toggle="tab" href="#section{{loop.index0}}"><i class="icon-camera"></i>{{newsCategory.name}}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="tab-content">
+                                {% for newsCategory in newsCategory %}
+                                <div id="section{{loop.index0}}" class="tab-pane fade{% if loop.first %} in active{% endif %}">
+                                    <ul class="new-list">
+                                        {% for news in news %}
+                                        {% if news.category.name==newsCategory.name %}
+                                        <li class="new-list-item"><a href="/news/news_detail?id={{news.id.toString()}}">
+                                            <i class="icon-bar-chart"></i>
+                                            <span class="new-title">{{news.title}}</span>
+                                            <span class="new-data">{{news.date}}</span></a>
+                                        </li>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- work area end   -->
+</div>
+<style type="text/css">
+    .work_area .tab-content .new-list {
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+    .work_area .tab-content .new-list .new-list-item {
+        list-style: none;
+        width: 100%;
+        font-size: 18px;
+    }
+    .work_area .tab-content .new-list a {
+        display: block;
+        padding: 15px 0;
+    }
+    .work_area .tab-content .new-list a:hover {
+        color: #da7464;
+    }
+    .work_area .tab-content .new-list .new-list-item i {
+        margin-right: 5px;
+        font-size: 20px;
+    }
+    .work_area .tab-content .new-list .new-list-item .new-title {
+
+    }
+    .work_area .tab-content .new-list .new-list-item .new-data {
+        float: right;
+    }
+</style>
+{% endblock %}
+
+{% block footer %}
+{%include 'footer.html' %}
+{% endblock %}

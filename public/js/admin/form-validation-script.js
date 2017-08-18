@@ -37,23 +37,23 @@ var Script = function () {
                 agree: "required"
             },
             messages: {
-                firstname: "Please enter your firstname",
-                lastname: "Please enter your lastname",
+                firstname: "请输入您的姓氏",
+                lastname: "请输入您的名字",
                 username: {
-                    required: "Please enter a username",
-                    minlength: "Your username must consist of at least 2 characters"
+                    required: "请输入您的用户名",
+                    minlength: "请输入至少 2 位数的用户名"
                 },
                 password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
+                    required: "请输入您的密码",
+                    minlength: "请输入至少 5 位数的密码"
                 },
                 confirm_password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long",
-                    equalTo: "Please enter the same password as above"
+                    required: "请再次输入您的密码",
+                    minlength: "请输入至少 5 位数的密码",
+                    equalTo: "两次密码不一致"
                 },
-                email: "Please enter a valid email address",
-                agree: "Please accept our policy"
+                email: "请输入有效的E-mail地址",
+                agree: "请勾选同意协议"
             }
         });
 

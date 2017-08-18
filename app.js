@@ -43,7 +43,7 @@ app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/jrf', {useMongoClient:true}, function(err){
+mongoose.connect('mongodb://kxcf:kxcfkxcf@localhost:27017/jrf', {useMongoClient:true}, function(err){
   if(err){
     console.log('mongodb connect failed!');
   }else{

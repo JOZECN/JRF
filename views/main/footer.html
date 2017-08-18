@@ -1,79 +1,62 @@
 <div class="m-foot">
-    <div class="fix_wilih">
-        <div class="m-information">
-            <div class="about-us">
+    <div class="m-information">
+        <div class="about-us clearfix">
+            <div class="about-block col-md-2">
                 <ul>
-                    <li class="about-block">
-                        <div>
-                            <ul>
-                                <li class="title">关于我们</li>
-                                <li><a href="">公司简介</a></li>
-                                <li><a href="">联系我们</a></li>
-                                <li><a href="">加入我们</a></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="about-block">
-                        <div>
-                            <ul>
-                                <li class="title">关于金融坊</li>
-                                <li><a href="">平台简介</a></li>
-                                <li><a href="">平台原理</a></li>
-                                <li><a href="">费率</a></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="about-block">
-                        <div>
-                            <ul>
-                                <li class="title">用户协议</li>
-                                <li><a href="">政策法规</a></li>
-                                <li><a href="">隐私保护</a></li>
-                                <li><a href="">免责条款</a></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="about-block">
-                        <div>
-                            <ul>
-                                <li class="title">常见问题</li>
-                                <li><a href="">投资人必读</a></li>
-                                <li><a href="">充值提现必读</a></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="about-block">
-                        <div class="hotline">
-                            <ul>
-                                <li class="title">客服热线</li>
-                                <li style="line-height: 20px;">020-38339789</li>
-                                <li>020-38339789(对外呼叫号，如需联系，请拨打该电话)</li>
-                                <li>周一至周日8:00—18:00</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="about-block">
-                        <div class="g-weixin">
-                            <ul>
-                                <li class="title">官方微信</li>
-                                <li><img class="weixin_img" src="../../public/img/weixinlogo.jpg" style="display: inline;"></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <div style="clear: both"></div>
+                    <li class="title">关于我们</li>
+                    <li><a href="">公司简介</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">加入我们</a></li>
+                    <li></li>
                 </ul>
             </div>
-            <div style="clear: both"></div>
+            <div class="about-block col-md-2">
+                <ul>
+                    <li class="title">关于金融坊</li>
+                    <li><a href="">平台简介</a></li>
+                    <li><a href="">平台原理</a></li>
+                    <li><a href="">费率</a></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="about-block col-md-2">
+                <ul>
+                    <li class="title">用户协议</li>
+                    <li><a href="">政策法规</a></li>
+                    <li><a href="">隐私保护</a></li>
+                    <li><a href="">免责条款</a></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="about-block col-md-2">
+                <ul>
+                    <li class="title">常见问题</li>
+                    <li><a href="">新手指南</a></li>
+                    <li><a href="">投资人必读</a></li>
+                    <li><a href="">充值提现必读</a></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="about-block hotline col-md-2">
+                <ul>
+                    <li class="title">客服热线</li>
+                    <li style="line-height: 20px;">020-38339789</li>
+                    <li>020-38339789(对外呼叫号，如需联系，请拨打该电话)</li>
+                    <li>周一至周日8:00—18:00</li>
+                </ul>
+            </div>
+            <div class="about-block g-weixin col-md-2">
+                <ul>
+                    <li class="title">官方微信</li>
+                    <li><img class="weixin_img" src="../../public/img/weixinlogo.jpg"></li>
+                </ul>
+            </div>
         </div>
-        <div class="g-copyright">
-            <p class="pt10">
-                广州开银投资咨询服务有限公司 &nbsp;&nbsp;©2014 www.jrfp2f.com &nbsp;&nbsp;ICP备案：粤ICP备15042493号&nbsp;
-            </p>
-        </div>
+    </div>
+    <div class="g-copyright col-lg-12">
+        <p class="pt10">
+            广州开银投资咨询服务有限公司 &nbsp;&nbsp;©2014 www.jrfp2f.com &nbsp;&nbsp;ICP备案：粤ICP备15042493号&nbsp;
+        </p>
     </div>
 </div>
 <style type="text/css">
@@ -94,19 +77,9 @@
     .g-weixin {
         text-align: center;
     }
-    .m-information {
-        padding: 40px 10%;
+    .about-us {
+        padding: 20px 0 10px 0;
         background-color: #23272c;
-    }
-    .about-block {
-        width: 12.5%;
-        float: left;
-    }
-    .about-block:nth-last-child(3) {
-        width: 40%;
-    }
-    .about-block:nth-last-child(2) {
-        width: 10%;
     }
     .about-block li {
         margin-bottom: 10px;
@@ -137,6 +110,12 @@
     }
     .hotline li {
         font-size: 14px;
+        text-align: left;
         margin-bottom: 10px;
+    }
+    @media only screen and (max-width: 798px) {
+        .m-information {
+            display: none;
+        }
     }
 </style>

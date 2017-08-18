@@ -6,16 +6,45 @@ const router = express.Router();
 const Content = require('../models/content');
 renderAdminTable(Content,'about',12);
 
+const Slide = require('../models/slide');
+const News = require('../models/news');
+const Question = require('../models/question');
+const Category = require('../models/category');
+
 router.get('/', function(req,res,next){
-  res.render('main/index',{
+  Slide.find().populate(['product']).then(function (slide) {
+    News.find().populate(['category']).then(function (news) {
+      Category.find({sort:'news'}).then(function (newsCategory) {
+        res.render('main/index',{
+          userInfo:req.userInfo,
+          slide: slide,
+          news: news,
+          newsCategory: newsCategory
+        })
+      })
+    })
+  })
+});
+
+router.get('/404', function(req,res,next){
+  res.render('main/404',{
     userInfo:req.userInfo
-  });
+  })
+});
+
+router.get('/500', function(req,res,next){
+  res.render('main/500',{
+    userInfo:req.userInfo
+  })
 });
 
 router.get('/adviser', function(req,res,next){
-  res.render('main/adviser',{
-    userInfo:req.userInfo
-  });
+  Question.find().then(function (question) {
+    res.render('main/adviser',{
+      userInfo: req.userInfo,
+      data: question
+    })
+  })
 });
 
 router.get('/login', function(req,res,next){
@@ -60,7 +89,7 @@ function renderAdminTable(obj,type,limit,_query){
       }
 
       newObj.then(function(data){
-        console.log(data);
+        //console.log(data);
         res.render('main/'+type,{
           type:type,
           userInfo:req.userInfo,

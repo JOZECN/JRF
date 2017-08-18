@@ -2,19 +2,33 @@ const express = require('express');
 const router = express.Router();
 
 const News = require('../models/news');
+const Category = require('../models/category');
 
 /*  main  */
 
 router.get('/', function(req,res,next){
-  res.render('main/news',{
-    userInfo:req.userInfo
-  });
+  News.find().populate(['category','user']).limit(15).then(function (news) {
+    Category.find({sort:'news'}).then(function (newsCategory) {
+      res.render('main/news', {
+        userInfo: req.userInfo,
+        news: news,
+        newsCategory: newsCategory
+      })
+    })
+  })
 });
 
 router.get('/news_detail', function(req,res,next){
-  res.render('main/news_detail',{
-    userInfo:req.userInfo
-  });
+  var id=req.query.id;
+
+  News.findOne({_id:id}).populate(['category','user']).then(function (rs) {
+    rs.view++;
+    rs.save();
+    res.render('main/news_detail',{
+      userInfo: req.userInfo,
+      data: rs
+    });
+  })
 });
 
 /*  admin  */

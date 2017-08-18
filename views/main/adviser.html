@@ -1,0 +1,278 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<link href="../../public/css/admin/style.css" rel="stylesheet">
+<link href="../../public/css/admin/style-responsive.css" rel="stylesheet" />
+<style type="text/css">
+    legend {
+        margin-bottom: 0;
+    }
+    input[type=radio] {
+        width: 20px;
+        height: 20px;
+        margin: 0 10px 0 0;
+    }
+    .main_header {
+        opacity: 1;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.93);
+    }
+    .adviser .panel {
+        margin: 0 auto;
+    }
+    .adviser .panel-heading {
+        font-size: 25px;
+        color: #e95a44;
+        font-weight: 600;
+    }
+    .form-horizontal {
+        padding: 0 10%;
+    }
+    .form-horizontal .col-lg-12 {
+        padding: 10px 0;
+        font-size: 20px;
+        text-align: left;
+    }
+    .panel-body {
+        padding: 0 15px 15px 15px;
+    }
+    .stepy-titles li.current-step div {
+        background-color: #e95a44;
+    }
+    .stepy-titles li.current-step div,.stepy-titles li div {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+    }
+    .null-panel {
+        margin: 10px 0 !important;
+        padding: 20px 0;
+    }
+    .null-panel p,.answer-panel .title {
+        font-size: 25px;
+        color: #e95a44;
+        font-weight: 600;
+    }
+    .answer-panel .title {
+        width: 100%;
+        padding: 10px;
+    }
+    .answer-panel {
+        margin: 10px 0 !important;
+        border: none;
+    }
+
+    .product-img {
+        height: 200px;
+        overflow: hidden;
+    }
+    .product-img img{
+        height: 100%;
+    }
+    .product-detail {
+        height: 200px;
+        border: 1px #dddddd solid;
+    }
+    .product-detail-name {
+        width: 100%;
+        text-align: center;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 20px 0;
+        color: #e95a44;
+        border-bottom: 1px #dddddd solid;
+    }
+    .product-detail-block {
+        margin: 10px 0;
+    }
+    .product-detail-category,.product-detail-time {
+        border-right: 1px #dddddd dashed;
+    }
+    .product-detail-category,.product-detail-time,.product-detail-profit {
+        padding: 15px;
+    }
+    .product-detail-category p:last-child,.product-detail-time p:last-child,.product-detail-profit p:last-child {
+        font-size: 30px;
+        color: #e95a44;
+        font-weight: 600;
+    }
+    .product-detail-name_name {
+        width: 100%;
+        color: #e95a44;
+        display: block;
+    }
+    .product-detail-name_name:hover {
+        color: #ff0000;
+    }
+    @media only screen and (max-width: 959px) {
+        .product-detail-category,.product-detail-time,.product-detail-profit {
+            padding: 0;
+        }
+        .product-detail {
+            height: auto;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        .wrapper {
+            padding: 0;
+        }
+        .question-main {
+            padding: 0 !important;
+        }
+        .stepy-tab ul {
+            padding: 0;
+        }
+        .product-img {
+            width: 100%;
+            overflow: hidden;
+        }
+        .product-img img{
+            width: 100%;
+            height: auto;
+        }
+        .product-detail-category,.product-detail-time {
+            border-right: none;
+        }
+        .product-detail-category,.product-detail-time,.product-detail-profit {
+            padding: 0;
+        }
+    }
+</style>
+<div class="row">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row adviser">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10 question-main">
+                <section class="panel question-panel">
+                    <header class="panel-heading">
+                        您的理财顾问
+                    </header>
+                    <div class="panel-body">
+                        <div class="stepy-tab">
+                            <ul id="default-titles" class="stepy-titles clearfix">
+                                {% for question in data %}
+                                <li id="default-title-{{loop.index}}" {% if loop.first %}class="current-step"{% endif %}>
+                                    <div>Step {{loop.index0}}</div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="form-horizontal" id="default">
+                            {% for question in data %}
+                            <fieldset title="Step {{loop.index}}" class="step">
+                                <legend> </legend>
+                                <div class="form-group">
+                                    <label class="col-lg-12 control-label">{{question.name}}</label>
+                                    {% if question.answerA!='' %}
+                                    <div class="col-lg-12">
+                                        <input type="radio" name="{{question._id.toString()}}" value="A">{{question.answerA}}
+                                    </div>
+                                    {% endif %}
+                                    {% if question.answerB!='' %}
+                                    <div class="col-lg-12">
+                                        <input type="radio" name="{{question._id.toString()}}" value="B">{{question.answerB}}
+                                    </div>
+                                    {% endif %}
+                                    {% if question.answerC!='' %}
+                                    <div class="col-lg-12">
+                                        <input type="radio" name="{{question._id.toString()}}" value="C">{{question.answerC}}
+                                    </div>
+                                    {% endif %}
+                                    {% if question.answerD!='' %}
+                                    <div class="col-lg-12">
+                                        <input type="radio" name="{{question._id.toString()}}" value="D">{{question.answerD}}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            {% endfor %}
+                            <button class="finish btn btn-danger PostContent">完成问卷</button>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel null-panel">
+                    <p>暂未找到适合您的产品</p>
+                </section>
+                <section class="panel answer-panel">
+                    <p class="title">给您推荐适合您的产品</p>
+                    <div class="clearfix">
+                        <div class="col-sm-3" style="padding: 0">
+                            <div class="product-img">
+                                <img src="../../public/img/1.jpg">
+                            </div>
+                        </div>
+                        <div class="col-sm-9" style="padding: 0">
+                            <div class="product-detail">
+                                <div class="product-detail-name"><a class="product-detail-name_name"></a></div>
+                                <div class="product-detail-block clearfix">
+                                    <div class="col-sm-4 product-detail-category">
+                                        <p>所属分类</p>
+                                        <p class="product-detail-category_name"></p>
+                                    </div>
+                                    <div class="col-sm-4 product-detail-time">
+                                        <p>最短持有期限</p>
+                                        <p class="product-detail-time_time"></p>
+                                    </div>
+                                    <div class="col-sm-4 product-detail-profit">
+                                        <p>预期年化收益</p>
+                                        <p class="product-detail-profit_profit"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+        <!-- page end-->
+    </section>
+</div>
+<script src="../../public/js/admin/jquery.stepy.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $('.null-panel').hide();
+    $('.answer-panel').hide();
+
+    $('#default').stepy({
+      backLabel: '上一步',
+      block: true,
+      nextLabel: '下一步',
+      titleClick: true,
+      titleTarget: '.stepy-tab'
+    });
+
+    $('.PostContent').click(function () {
+      var temp='';
+      $('input:radio:checked').each(function(){
+        temp=temp+$(this).val().toString();
+      });
+      $.ajax({
+        type: 'post',
+        url: '/question/answer',
+        data: {
+          answer: temp
+        },
+        dataType: 'json',
+        success: function (data) {
+          if(data.code==0){
+            $('.product-detail-name_name').attr('href','http://'+(window.location.host).toString()+'/product/product_detail?id='+((JSON.parse(JSON.stringify(data.data[0].product)))._id));
+            $('.product-detail-name_name').text(((JSON.parse(JSON.stringify(data.data[0].product))).name));
+            $('.product-detail-category_name').text(((JSON.parse(JSON.stringify(data.data[0].product.category))).name));
+            $('.product-detail-time_time').text(((JSON.parse(JSON.stringify(data.data[0].product))).time));
+            $('.product-detail-profit_profit').text(((JSON.parse(JSON.stringify(data.data[0].product))).income));
+            $('.answer-panel').fadeIn(500);
+          }else {
+            $('.null-panel').fadeIn(500);
+          }
+        }
+      })
+    })
+  });
+</script>
+{% endblock %}
+
+{% block footer %}
+{%include 'footer.html' %}
+{% endblock %}

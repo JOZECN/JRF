@@ -2,22 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Product = require('../models/product');
-
-/*  main  */
-
-router.get('/', function(req,res,next){
-  res.render('main/products',{
-    userInfo:req.userInfo
-  });
-});
-
-router.get('/product_detail', function(req,res,next){
-  res.render('main/product_detail',{
-    userInfo:req.userInfo
-  });
-});
-
-/*  admin  */
+const Category = require('../models/category');
 
 var responseData=null;
 router.use(function(req,res,next){
@@ -27,6 +12,44 @@ router.use(function(req,res,next){
   };
   next();
 });
+
+/*  main  */
+
+router.get('/', function(req,res,next){
+  Product.find().populate(['category','user']).then(function (product) {
+    Category.find().then(function (category) {
+      res.render('main/product', {
+        userInfo:req.userInfo,
+        product: product,
+        category: category
+      })
+    })
+  })
+});
+
+router.get('/product_detail', function(req,res,next){
+  var id=req.query.id;
+
+  Product.findOne({
+    _id: id
+  }).populate(['category']).then(function(rs){
+    if(!rs){
+      res.render('main/error',{
+        userInfo:req.userInfo,
+        message:'该产品id已被删除了。'
+      });
+      return;
+    }else {
+      //console.log(rs);
+      res.render('main/product_detail', {
+        userInfo: req.userInfo,
+        data: rs
+      })
+    }
+  })
+});
+
+/*  admin  */
 
 router.post('/product_add',function(req,res,next){
   var name=req.body.name;
@@ -66,6 +89,7 @@ router.post('/product_add',function(req,res,next){
       dealline:req.body.dealline,
       qualify:req.body.qualify,
       area:req.body.area,
+      image: req.body.image,
       date:new Date().toDateString(),
       user:req.body.user,
       view:0
@@ -128,6 +152,7 @@ router.post('/product_edit',function(req,res,next){
           dealline:req.body.dealline,
           qualify:req.body.qualify,
           area:req.body.area,
+          image: req.body.image,
           date:new Date().toDateString(),
           user:req.body.user,
           view:Number(rs.view)

@@ -43,7 +43,9 @@
                                     <div class="col-lg-2" style="padding: 8px 15px;">
                                         <select id="pcategory" name="category" class="category-select" required>
                                             {% for category in category %}
+                                            {% if category.sort=='product' %}
                                             <option value="{{category._id.toString()}}">{{category.name}}</option>
+                                            {% endif %}
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -103,6 +105,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="pimage" class="control-label col-lg-2">产品图片<br>(小于500k)</label>
+                                    <div class="col-lg-10">
+                                        <label>
+                                            <img class="productImage" src="{{data.image}}" style="max-height: 100px;width: auto;">
+                                            <input type="file" id="pimage" name="pimage" multiple="multiple" accept="image/*" style="display: none;">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
                                         <button class="btn btn-danger post-content" type="button">保存</button>
                                     </div>
@@ -151,6 +162,7 @@
           pay: $.trim($('#ppay').val()),
           dealline: $.trim($('#pdealline').val()),
           qualify: $.trim($('#pqualify').val()),
+          image: $('.productImage').attr('src'),
           area: $.trim($('#parea').val()),
           user: '{{userInfo._id.toString()}}'
         },
@@ -172,6 +184,35 @@
           }, function(){
             window.location.href='http://'+(window.location.host).toString()+"/admin/product_list";
           });
+        }
+      });
+    });
+
+    $("input[name='pimage']").change(function () {
+      var file=this.files||this.value;
+
+      var formData = new FormData();
+      formData.append("file", file[0]);
+      $.ajax({
+        url: '/admin/uploadImg',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        success: function (data) {
+          if(data.error){
+            sweetAlert({
+              title: '选择文件大于512k',
+              type: 'warning',
+              showCancelButton: false,
+              confirmButtonColor: "#0083ff",
+              confirmButtonText: "关闭",
+              closeOnConfirm: true
+            }, function(){});
+          }else{
+            $('.productImage').attr("src",data.url);
+          }
         }
       });
     });

@@ -93,7 +93,7 @@
             <div class="menu">
                 <ul>
                     <li class="site-logo"><a href="/"><img src="../../public/img/logo.jpg"><span>开信财富</span></a></li>
-                    <li><a href="/">首页</a></li>
+                    <li><a href="/" onclick=window.open('/','_parent')>首页</a></li>
                     <li><a href="#">理财产品</a>
                         <ul>
                             <li><a href="/product" onclick=window.open('/product','_parent')>投资产品</a></li>
@@ -119,7 +119,6 @@
                                 <li><a href="#">我的消息</a></li>
                                 <li><a href="#">交易记录</a></li>
                                 <li><a href="#">账户安全</a></li>
-                                <li><a href="#">账户安全</a></li>
                                 <li><a href="javascript:;" id="logout">注销登录</a></li>
                             {% else %}
                                 <li><a href="/login" onclick=window.open('/login','_parent')>登录/注册</a></li>
@@ -140,13 +139,13 @@
 {% block footer %}{% endblock %}
 
 </body>
-<script src="../../public/js/wow.js"></script>
-<script src="../../public/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="../../public/js/wow.js"></script>
+<script type="text/javascript" src="../../public/js/jquery.nicescroll.js"></script>
 <script type="text/javascript" src="../../public/js/jquery.easing.min.js"></script>
 <script type="text/javascript" src="../../public/js/jquery.mixitup.min.js"></script>
-<script src="../../public/js/imagesloaded.pkgd.min.js"></script>
-<script src="../../public/js/owl.carousel.js"></script>
-<script src="../../public/js/scrollupto.js"></script>
+<script type="text/javascript" src="../../public/js/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="../../public/js/owl.carousel.js"></script>
+<script type="text/javascript" src="../../public/js/scrollupto.js"></script>
 <script type="text/javascript" src="../../public/js/main.js"></script>
 
 <script type="text/javascript">
@@ -156,7 +155,7 @@
       url:'/user/logout',
       success:function(data){
         if(!data.code){
-          window.location.reload();
+          window.location.href='http://'+(window.location.host).toString();
         }
       }
     })

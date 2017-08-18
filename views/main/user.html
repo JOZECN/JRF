@@ -1,0 +1,245 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<style type="text/css">
+    .main_header {
+        opacity: 1;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.93);
+    }
+    .user-main {
+        margin-top: 80px;
+    }
+    .user-main .nav-header {
+        border-bottom: 1px #cccccc solid;
+        padding-bottom: 5px;
+        color: #e95a44;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .user-main .nav-list li a:hover {
+        background-color: #e95a44;
+        border-radius: 3px;
+        color: #FFFFFF;
+    }
+    .user-main .nav-list li a{
+        margin: 5px;
+        padding: 5px 10px;
+    }
+    .user-main .nav-list .active a {
+        background-color: #e95a44;
+        border-radius: 3px;
+        color: #FFFFFF;
+    }
+    .user-content {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #FFFFFF;
+        border: 1px #dddddd solid;
+        border-radius: 5px;
+        text-align: left;
+    }
+    .user-content .title {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #e95a44;
+        border-bottom: 2px #e95a44 solid;
+    }
+    .user-content .tip {
+        font-size: 25px;
+        font-weight: 600;
+        color: #e95a44;
+    }
+    input[class*="error"] {
+        background-color: #FFFFFF !important;
+    }
+    label[class*="error"] {
+        color: #FFFFFF !important;
+    }
+</style>
+<div class="row user-main">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul class="nav nav-list well">
+                    <li class="nav-header">我的开信</li>
+                    <li class="active"><a href="#" name="account">我的账户</a></li>
+                    <li><a href="#" name="message">我的消息</a></li>
+                    <li><a href="#" name="transaction">交易记录</a></li>
+                    <li class="nav-header">账户安全</li>
+                    <li><a href="#" name="account_info">账户信息</a></li>
+                    <li><a href="#" name="change_password">修改密码</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div class="user-content">
+                    <div class="block account-block">
+                        <p class="title">我的账户</p>
+                        {% if data.phoneNum=='' or data.eMail=='' %}
+                        <p class="tip">完善账户安全中的账户信息，该信息将作为找回账户的唯一凭证！</p>
+                        {% endif %}
+                    </div>
+                    <div class="block message-block" style="display: none">
+                        <p class="title">我的消息</p>
+                    </div>
+                    <div class="block transaction-block" style="display: none">
+                        <p class="title">交易记录</p>
+                    </div>
+                    <div class="block account_info-block" style="display: none">
+                        <p class="title">账户信息</p>
+                        <section class="panel">
+                            <div class=" form">
+                                <form class="cmxform form-horizontal tasi-form" id="commentForm">
+                                    <div class="form-group ">
+                                        <label for="cname" class="control-label col-lg-2">真实姓名 (必填项)</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" value="{{data.name}}" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="cemail" class="control-label col-lg-2">E-Mail (必填项)</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="cemail" type="email" name="email" value="{{data.eMail}}" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="cphone" class="control-label col-lg-2">手机号码 (必填项)</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="cphone" name="phone" type="number" minlength="11" maxlength="11" value="{{data.phoneNum}}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <a class="btn btn-danger PostContent-account_info">保存</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="block change_password-block" style="display: none">
+                        <p class="title">修改密码</p>
+                        <section class="panel">
+                            <div class="form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm">
+                                    <div class="form-group ">
+                                        <label for="old_password" class="control-label col-lg-2">原密码</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="old_password" type="password" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="new_password" class="control-label col-lg-2">新密码</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="password" name="password" type="password" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="confirm_password" class="control-label col-lg-2">再次输入新密码</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="confirm_password" name="confirm_password" type="password" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <a class="btn btn-danger PostContent-change_password">确认修改</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+
+<script type="text/javascript" src="../../public/js/admin/jquery.validate.min.js"></script>
+<script src="../../public/js/admin/form-validation-script.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    $('.nav-list li').click(function (e) {
+      e.preventDefault();
+      $('.nav-list li').removeClass('active');
+      $(this).addClass('active');
+    });
+    $('.nav-list li a').click(function () {
+      var name=$(this).attr('name');
+      $('.user-content .block').css('display','none');
+      $('.user-content .'+ name +'-block').css('display','block');
+    });
+    
+    $('.PostContent-account_info').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/user/user_save',
+        data: {
+          name: $.trim($('#cname').val()),
+          eMail: $.trim($('#cemail').val()),
+          phoneNum: $.trim($('#cphone').val())
+        },
+        dataType: 'json',
+        success: function (data) {
+          var type='success';
+          var showCancelButton=false;
+          if(data.code!=0){
+            type='warning';
+            showCancelButton=true;
+          }
+          sweetAlert({
+            title: data.message,
+            type: type,
+            showCancelButton: showCancelButton,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "",
+            closeOnConfirm: false
+          }, function(){
+            window.location.href='http://'+(window.location.host).toString()+"/user";
+          })
+        }
+      })
+    });
+
+    $('.PostContent-change_password').click(function () {
+      $.ajax({
+        type: 'post',
+        url: '/user/user_change_password',
+        data: {
+          oldPassword: $.trim($('#old_password').val()),
+          password: $.trim($('#password').val()),
+          confirmPassword: $.trim($('#confirm_password').val())
+        },
+        dataType: 'json',
+        success: function (data) {
+          var type='success';
+          var showCancelButton=false;
+          if(data.code!=0){
+            type='warning';
+            showCancelButton=true;
+          }
+          sweetAlert({
+            title: data.message,
+            type: type,
+            showCancelButton: showCancelButton,
+            confirmButtonColor: "#0083ff",
+            confirmButtonText: "",
+            closeOnConfirm: false
+          }, function(){
+            window.location.href='http://'+(window.location.host).toString()+"/user";
+          })
+        }
+      })
+    })
+  });
+</script>
+{% endblock %}
+
+{% block footer %}
+{%include 'footer.html' %}
+{% endblock %}

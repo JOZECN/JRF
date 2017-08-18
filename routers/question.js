@@ -174,7 +174,7 @@ router.post('/answer_edit',function(req,res,next){
       responseData.message='答案修改成功';
       res.json(responseData);
       return;
-    });
+    })
   }
 });
 
@@ -188,7 +188,19 @@ router.post('/answer_delete',function(req,res,next){
     responseData.message='答案删除成功! ';
     res.json(responseData);
     return;
-  });
+  })
+});
+
+router.post('/answer',function (req,res,next) {
+  var answer=req.body.answer;
+
+  Answer.find({answer: answer}).populate({
+    path: 'product',
+    populate: {path: 'category'}
+  }).then(function (rs) {
+    responseData.data=rs;
+    res.json(responseData);
+  })
 });
 
 module.exports = router;

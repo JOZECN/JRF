@@ -1,45 +1,41 @@
 {% extends 'layout.html' %}
 
 {% block slide %}
-<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="5000" id="bs-carousel">
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="50000" id="bs-carousel">
     <!-- Overlay -->
     <!--<div class="overlay"></div>-->
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#bs-carousel" data-slide-to="1"></li>
-        <li data-target="#bs-carousel" data-slide-to="2"></li>
+        {% for slide in slide %}
+        <li data-target="#bs-carousel" data-slide-to="{{loop.index0}}"{% if loop.first %} class="active"{% endif %}></li>
+        {% endfor %}
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        <div class="item slides active">
-            <div class="slide-1" style="background-image: url(../../public/img/photo-01.jpg);"></div>
+        {% for slide in slide %}
+        <div class="item slides{% if loop.first %} active{% endif %}" style="background-color: #000000">
+            <div class="slide-{{loop.index}}" style="background-image: url({{slide.image}});opacity: 0.5;"></div>
             <div class="hero">
-                <h1><span>开信财富</span></h1>
-                <h3>深圳前海开信财富管理有限公司</h3>
-                <button class="btn btn-hero btn-lg" role="button">了解更多</button>
+                <h1><span>{{slide.bTitle}}</span></h1>
+                <h3>{{slide.sTitle}}</h3>
+                <a class="btn btn-hero btn-lg" href="/product/product_detail?id={{slide.product._id.toString()}}" role="button">了解更多</a>
             </div>
         </div>
-        <div class="item slides">
-            <div class="slide-2" style="background-image: url(../../public/img/photo-02.jpg);"></div>
-            <div class="hero">
-                <h1><span>开信财富</span></h1>
-                <h3>深圳前海开信财富管理有限公司</h3>
-                <button class="btn btn-hero btn-lg" role="button">了解更多</button>
-            </div>
-        </div>
-        <div class="item slides">
-            <div class="slide-3" style="background-image: url(../../public/img/photo-03.jpg);"></div>
-            <div class="hero">
-                <h1><span>开信财富</span></h1>
-                <h3>深圳前海开信财富管理有限公司</h3>
-                <button class="btn btn-hero btn-lg" role="button">了解更多</button>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
+<style type="text/css">
+    @media screen and (max-width: 640px) {
+        .hero h1 {
+            font-size: 2.5em;
+        }
+        .hero h3 {
+            font-size: 1.5em;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block main %}
@@ -89,6 +85,11 @@
         margin-top: 10px;
         margin-bottom: 20px;
     }
+    @media only screen and (max-width: 959px) {
+        .hot-recommand-cover h2 {
+            margin-top: 0;
+        }
+    }
 </style>
 <script type="text/javascript">
     $(function () {
@@ -116,7 +117,7 @@
             <div class="blog_section">
                 <h1>您的随身 <span>理财顾问</span></h1>
                 <div class="single_blog col-md-4 slider-content">
-                    <a href="#">
+                    <a>
                         <img src="../../public/img/1.jpg" alt="">
                         <div class="slider-text">
                             <h3>财富创造</h3>
@@ -125,7 +126,7 @@
                     </a>
                 </div>
                 <div class="single_blog col-md-4 slider-content">
-                    <a href="#">
+                    <a>
                         <img src="../../public/img/2.jpg" alt="">
                         <div class="slider-text">
                             <h3>财富保全</h3>
@@ -134,7 +135,7 @@
                     </a>
                 </div>
                 <div class="single_blog col-md-4 slider-content">
-                    <a href="#">
+                    <a>
                         <img src="../../public/img/3.jpg" alt="">
                         <div class="slider-text">
                             <h3>财富传承</h3>
@@ -155,88 +156,27 @@
                 <div class="col-md-12 wow bounceInRight animated">
                     <div class="bs-example">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#sectionA"><i class="icon-camera"></i>行业资讯</a></li>
-                            <li><a data-toggle="tab" href="#sectionB"><i class="icon-camera"></i>企业动态</a></li>
-                            <li><a data-toggle="tab" href="#sectionC"><i class="icon-camera"></i>媒体报道</a></li>
+                            <a class="btn btn-danger" href="/news" style="float: right;">查看更多</a>
+                            {% for newsCategory in newsCategory %}
+                            <li class="{% if loop.first %}active{% endif %}"><a data-toggle="tab" href="#section{{loop.index0}}"><i class="icon-camera"></i>{{newsCategory.name}}</a></li>
+                            {% endfor %}
                         </ul>
                         <div class="tab-content">
-                            <div id="sectionA" class="tab-pane fade in active">
+                            {% for newsCategory in newsCategory %}
+                            <div id="section{{loop.index0}}" class="tab-pane fade{% if loop.first %} in active{% endif %}">
                                 <ul class="new-list">
-                                    <li class="new-list-item"><a href="#">
+                                    {% for news in news %}
+                                    {% if news.category.name==newsCategory.name %}
+                                    <li class="new-list-item"><a href="/news/news_detail?id={{news.id.toString()}}">
                                         <i class="icon-bar-chart"></i>
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
+                                        <span class="new-title">{{news.title}}</span>
+                                        <span class="new-data">{{news.date}}</span></a>
                                     </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
                                 </ul>
                             </div>
-                            <div id="sectionB" class="tab-pane fade">
-                                <ul class="new-list">
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="sectionC" class="tab-pane fade">
-                                <ul class="new-list">
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                    <li class="new-list-item"><a href="#">
-                                        <span class="new-title">大业信托•晟鑫1号集合资金信托计划</span>
-                                        <span class="new-data">2017年04月06日 11:07</span></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
