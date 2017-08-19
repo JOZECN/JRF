@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const crypto = require("crypto");
 
-const User=require('../models/User');
+const User=require('../models/user');
 
 var responseData=null;
 router.use(function(req,res,next){

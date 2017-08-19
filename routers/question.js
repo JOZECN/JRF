@@ -198,7 +198,12 @@ router.post('/answer',function (req,res,next) {
     path: 'product',
     populate: {path: 'category'}
   }).then(function (rs) {
-    responseData.data=rs;
+    if(!rs||rs==''){
+      responseData.code=1
+    }else{
+      responseData.code=0;
+      responseData.data=rs;
+    }
     res.json(responseData);
   })
 });
