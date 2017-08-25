@@ -132,7 +132,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label for="new_password" class="control-label col-lg-2">新密码</label>
+                                        <label for="password" class="control-label col-lg-2">新密码</label>
                                         <div class="col-lg-10">
                                             <input class="form-control " id="password" name="password" type="password" required/>
                                         </div>
@@ -188,7 +188,7 @@
         success: function (data) {
           var type='success';
           var showCancelButton=false;
-          if(data.code!=0){
+          if(data.code !== 0){
             type='warning';
             showCancelButton=true;
           }

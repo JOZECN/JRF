@@ -16,7 +16,7 @@ router.get('/', function(req,res,next){
     News.find().populate(['category']).then(function (news) {
       Category.find({sort:'news'}).then(function (newsCategory) {
         res.render('main/index',{
-          userInfo:req.userInfo,
+          userInfo: req.session.user,
           slide: slide,
           news: news,
           newsCategory: newsCategory
@@ -28,20 +28,20 @@ router.get('/', function(req,res,next){
 
 router.get('/404', function(req,res,next){
   res.render('main/404',{
-    userInfo:req.userInfo
+    userInfo: req.session.user
   })
 });
 
 router.get('/500', function(req,res,next){
   res.render('main/500',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   })
 });
 
 router.get('/adviser', function(req,res,next){
   Question.find().then(function (question) {
     res.render('main/adviser',{
-      userInfo: req.userInfo,
+      userInfo: req.session.user,
       data: question
     })
   })
@@ -49,13 +49,13 @@ router.get('/adviser', function(req,res,next){
 
 router.get('/login', function(req,res,next){
   res.render('main/login',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 
 router.get('/admin', function(req,res,next){
   res.render('admin/index',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 
@@ -92,7 +92,7 @@ function renderAdminTable(obj,type,limit,_query){
         //console.log(data);
         res.render('main/'+type,{
           type:type,
-          userInfo:req.userInfo,
+          userInfo:req.session.user,
           data:data,
           page:page,
           pages:pages,

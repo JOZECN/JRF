@@ -10,7 +10,7 @@ router.get('/', function(req,res,next){
   News.find().populate(['category','user']).limit(15).then(function (news) {
     Category.find({sort:'news'}).then(function (newsCategory) {
       res.render('main/news', {
-        userInfo: req.userInfo,
+        userInfo: req.session.user,
         news: news,
         newsCategory: newsCategory
       })
@@ -25,7 +25,7 @@ router.get('/news_detail', function(req,res,next){
     rs.view++;
     rs.save();
     res.render('main/news_detail',{
-      userInfo: req.userInfo,
+      userInfo: req.session.user,
       data: rs
     });
   })

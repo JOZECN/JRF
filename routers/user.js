@@ -16,14 +16,14 @@ router.use(function(req,res,next){
 /* router for user page */
 
 router.get('/',function (req,res,next) {
-  var username = req.userInfo.username;
+  var username = req.session.user.username;
 
   User.findOne({username: username}).then(function (rs) {
     if(!rs){
       res.render('main/404');
     }else {
       res.render('main/user',{
-        userInfo:req.userInfo,
+        userInfo: req.session.user,
         data: rs
       })
     }
@@ -40,14 +40,14 @@ router.post('/register',function(req,res,next){
   var md5 = crypto.createHash("md5");
   var newPas = md5.update(password).digest("hex");
 
-  if(username==''){
+  if(username===''){
     responseData.code=1;
     responseData.message='用户名不得为空！';
     res.json(responseData);
     return;
   }
 
-  if(password==''){
+  if(password===''){
     responseData.code=2;
     responseData.message='密码不得为空！';
     res.json(responseData);
@@ -63,25 +63,24 @@ router.post('/register',function(req,res,next){
 
   User.findOne({
     username:username
-  }).then(function(userInfo){
-    if(userInfo){
-      responseData.code=4;
-      responseData.message='该用户名已被注册！';
-      res.json(responseData);
-      return;
-    }else{
-      var user=new User({
+  }).then(function(user) {
+    if (!user) {
+      new User({
         username: username,
         password: newPas,
         date: new Date().toDateString(),
         view: 0
-      });
-      return user.save();
+      }).save().then(function () {
+        responseData.message = '注册成功！';
+        res.json(responseData);
+      })
+    } else {
+      responseData.code = 4;
+      responseData.message = '该用户名已被注册！';
+      res.json(responseData);
+      return;
     }
-  }).then(function(){
-    responseData.message='注册成功！';
-    res.json(responseData);
-  });
+  })
 });
 
 router.post('/registerCheck',function(req,res,next){
@@ -121,24 +120,31 @@ router.post('/login',function(req,res,next){
   User.findOne({
     username:username,
     password:newPas
-  }).then(function(userInfo){
-    if(!userInfo){
+  }).then(function(user){
+    if(!user){
       responseData.code=2;
       responseData.message='用户名或密码错误！';
       res.json(responseData);
       return;
     }else{
-      userInfo.view++;
-      userInfo.save();
+      user.view++;
+      //userInfo.loginTime=new Date();
+      user.save();
       responseData.message='登录成功！';
-      responseData.userInfo=userInfo.username;
 
-      req.cookies.set('userInfo',JSON.stringify({
+      req.session.user = {
+        '_id':user._id,
+        'username':user.username,
+        'isAdmin': user.isAdmin,
+        'userImg':user.userImg
+      };
+
+      /*req.cookies.set('userInfo',JSON.stringify({
           _id:userInfo._id,
           username:userInfo.username,
           isAdmin:userInfo.isAdmin
         })
-      );
+      );*/
       res.json(responseData);
       return;
     }
@@ -146,7 +152,7 @@ router.post('/login',function(req,res,next){
 });
 
 router.get('/logout',function(req,res){
-  res.clearCookie('userInfo',{path:'/'});
+  req.session.user = null;
   res.json(responseData);
   return;
 });
@@ -177,7 +183,7 @@ router.post('/user_save',function(req,res,next){
 
   if(responseData.code==0){
     User.findOne({
-      username: req.userInfo.username.toString()
+      username: req.session.user.username.toString()
     }).then(function (rs) {
       if(!rs) {
         responseData.code = 4;
@@ -186,7 +192,7 @@ router.post('/user_save',function(req,res,next){
         return;
       }else{
         return User.update({
-          username: req.userInfo.username.toString()
+          username: req.session.user.username.toString()
         },{
           name:req.body.name,
           eMail:req.body.eMail,
@@ -234,7 +240,7 @@ router.post('/user_change_password',function(req,res,next){
 
   if(responseData.code==0){
     User.findOne({
-      username: req.userInfo.username.toString()
+      username: req.session.user.username.toString()
     }).then(function (rs) {
       if(!rs) {
         responseData.code = 5;
@@ -248,7 +254,7 @@ router.post('/user_change_password',function(req,res,next){
         return;
       }else{
         return User.update({
-          username: req.userInfo.username.toString()
+          username: req.session.user.username.toString()
         },{
           password:req.body.password
         })

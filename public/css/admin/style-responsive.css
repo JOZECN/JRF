@@ -33,8 +33,7 @@
 
     /* body container */
     #main-content {
-        margin: 0px!important;
-        position: none !important;
+        margin: 0 !important;
     }
 
     #sidebar > ul > li > a > span {

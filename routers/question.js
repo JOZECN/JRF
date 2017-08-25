@@ -17,7 +17,7 @@ const Answer=require('../models/answer');
 
 router.get('/', function(req,res,next){
   res.render('main/adviser',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 

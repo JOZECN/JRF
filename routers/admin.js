@@ -131,14 +131,14 @@ renderAdminTable(Content,'faq',3);
 
 router.get('/', function(req,res,next){
   res.render('admin/index',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 
 router.get('/product_add', function(req,res,next){
   Category.find({'sort': 'product'}).then(function(category){
     res.render('admin/product_add',{
-      userInfo:req.userInfo,
+      userInfo:req.session.user,
       category:category
     });
   })
@@ -146,7 +146,7 @@ router.get('/product_add', function(req,res,next){
 
 router.get('/product_category_add', function(req,res,next){
   res.render('admin/product_category_add',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 
@@ -158,13 +158,13 @@ router.get('/product_category_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该分类id已被删除了。'
       });
       return;
     }else{
       res.render('admin/product_category_edit',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         data: rs
       });
     }
@@ -174,7 +174,7 @@ router.get('/product_category_edit', function(req,res,next){
 router.get('/news_add', function(req,res,next){
   Category.find({'sort': 'news'}).then(function(category){
     res.render('admin/news_add',{
-      userInfo:req.userInfo,
+      userInfo:req.session.user,
       category:category
     });
   })
@@ -182,7 +182,7 @@ router.get('/news_add', function(req,res,next){
 
 router.get('/news_category_add', function(req,res,next){
   res.render('admin/news_category_add',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 
@@ -194,13 +194,13 @@ router.get('/news_category_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该分类id已被删除了。'
       });
       return;
     }else{
       res.render('admin/news_category_edit',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         data: rs
       });
     }
@@ -209,7 +209,7 @@ router.get('/news_category_edit', function(req,res,next){
 
 router.get('/question_list',function(req,res,next){
   var data={
-    userInfo:req.userInfo
+    userInfo:req.session.user
   };
 
   Question.find().then(function(question){
@@ -226,7 +226,7 @@ router.get('/question_list',function(req,res,next){
 
 router.get('/question_add', function(req,res,next){
   res.render('admin/question_add',{
-    userInfo:req.userInfo
+    userInfo:req.session.user
   });
 });
 
@@ -238,13 +238,13 @@ router.get('/question_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该问题id已被删除了。'
       });
       return;
     }else{
       res.render('admin/question_edit',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         data: rs
       });
     }
@@ -254,7 +254,7 @@ router.get('/question_edit', function(req,res,next){
 router.get('/answer_add', function(req,res,next){
   Product.find().then(function(product){
     res.render('admin/answer_add',{
-      userInfo: req.userInfo,
+      userInfo: req.session.user,
       product: product
     })
   })
@@ -268,14 +268,14 @@ router.get('/answer_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该答案id已被删除了。'
       });
       return;
     }else {
       Product.find().then(function (product) {
         res.render('admin/answer_edit', {
-          userInfo: req.userInfo,
+          userInfo: req.session.user,
           product: product,
           data: rs
         })
@@ -319,7 +319,7 @@ function renderAdminTable(obj,type,limit,_query){
         //console.log(data);
         res.render('admin/'+type,{
           type:type,
-          userInfo:req.userInfo,
+          userInfo:req.session.user,
           data:data,
           page:page,
           pages:pages,
@@ -439,14 +439,14 @@ router.get('/product_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该产品ID已被删除！'
       });
       return;
     }else{
       Category.find().then(function(category){
         res.render('admin/product_edit',{
-          userInfo:req.userInfo,
+          userInfo:req.session.user,
           category:category,
           data: rs
         });
@@ -463,14 +463,14 @@ router.get('/news_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该资讯ID已被删除！'
       });
       return;
     }else{
       Category.find().then(function(category){
         res.render('admin/news_edit',{
-          userInfo:req.userInfo,
+          userInfo:req.session.user,
           category:category,
           data: rs
         });
@@ -482,7 +482,7 @@ router.get('/news_edit', function(req,res,next){
 router.get('/slide_config_add', function(req,res,next){
   Product.find().then(function(product){
     res.render('admin/slide_config_add',{
-      userInfo: req.userInfo,
+      userInfo: req.session.user,
       product: product
     })
   })
@@ -496,14 +496,14 @@ router.get('/slide_config_edit', function(req,res,next){
   }).then(function(rs){
     if(!rs){
       res.render('admin/404',{
-        userInfo:req.userInfo,
+        userInfo:req.session.user,
         message:'该轮播id已被删除了。'
       });
       return;
     }else{
       Product.find().then(function(product){
         res.render('admin/slide_config_edit',{
-          userInfo: req.userInfo,
+          userInfo: req.session.user,
           product: product,
           data: rs
         })
