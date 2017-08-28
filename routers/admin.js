@@ -74,9 +74,9 @@ router.get('/invoice', function(req,res,next){
   res.render('admin/invoice');
 });
 
-router.get('/layout', function(req,res,next){
+/*router.get('/layout', function(req,res,next){
   res.render('admin/layout');
-});
+});*/
 
 router.get('/login', function(req,res,next){
   res.render('admin/login');
@@ -130,9 +130,18 @@ renderAdminTable(Content,'faq',3);
 /*  router for admin page   */
 
 router.get('/', function(req,res,next){
-  res.render('admin/index',{
-    userInfo:req.session.user
-  });
+  User.count().then(function (userCount) {
+    Product.count().then(function (productCount) {
+      News.count().then(function (newsCount) {
+        res.render('admin/index',{
+          userInfo:req.session.user,
+          userCount: userCount,
+          productCount: productCount,
+          newsCount: newsCount
+        })
+      })
+    })
+  })
 });
 
 router.get('/product_add', function(req,res,next){

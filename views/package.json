@@ -1,0 +1,28 @@
+{
+  "name": "jrf",
+  "version": "1.0.0",
+  "description": "深圳前海开信财富管理有限公司",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "金融坊",
+    "深圳前海开信财富管理有限公司",
+    "开信集团"
+  ],
+  "author": "jozecn",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "cookies": "^0.7.0",
+    "crypto": "^1.0.1",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "formidable": "^1.1.1",
+    "mongoose": "^4.11.6",
+    "swig": "^1.4.2"
+  }
+}
