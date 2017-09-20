@@ -16,6 +16,7 @@ module.exports = new mongoose.Schema({
   dealline: String,
   qualify: String,
   area: String,
+  term: String,
   image: {
     type: String,
     default: '/../public/img/product_default.jpg'

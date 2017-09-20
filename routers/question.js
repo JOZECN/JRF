@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 var responseData=null;
 router.use(function(req,res,next){
@@ -10,8 +10,8 @@ router.use(function(req,res,next){
   next();
 });
 
-const Question=require('../models/question');
-const Answer=require('../models/answer');
+var Question=require('../models/question');
+var Answer=require('../models/answer');
 
 /*  main  */
 

@@ -32,6 +32,16 @@
             margin-bottom: 0;
         }
     }
+    .index-about_site, .index-site_theory, .index-rate {
+        margin-top: 20px;
+        padding: 5px 0px;
+        border-top: 1px #dddddd solid;
+        color: black;
+    }
+    .index-about_site textarea, .index-site_theory textarea, .index-rate textarea{
+        width: 100%;
+        font-size: 14px;
+    }
 </style>
 
 {% endblock %}
@@ -66,7 +76,6 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <button class="btn btn-danger post-about_site">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote = $('.about_site').summernote({
@@ -101,6 +110,11 @@
                             }
                           });
                         </script>
+                        <div class="index-about_site">
+                            <h4>首页轮播设置</h4>
+                            <textarea placeholder="请输入平台简介..." rows="3">{% for content in data %}{% if content.title=='index_about_site' %}{{content.content}}{% endif %}{% endfor %}</textarea>
+                        </div>
+                        <button class="btn btn-danger post-about_site">保存设置</button>
                     </div>
                     <div id="site_theory" class="tab-pane">
                         <div class="site_theory">
@@ -110,7 +124,6 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <button class="btn btn-danger post-site_theory">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote2 = $('.site_theory').summernote({
@@ -144,6 +157,11 @@
                             }
                           });
                         </script>
+                        <div class="index-site_theory">
+                            <h4>首页轮播设置</h4>
+                            <textarea placeholder="请输入平台原理..." rows="3">{% for content in data %}{% if content.title=='index_about_theory' %}{{content.content}}{% endif %}{% endfor %}</textarea>
+                        </div>
+                        <button class="btn btn-danger post-site_theory">保存设置</button>
                     </div>
                     <div id="rate" class="tab-pane">
                         <div class="rate">
@@ -153,7 +171,6 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <button class="btn btn-danger post-rate">保存该文章</button>
                         <script type="text/javascript">
                           $(document).ready(function() {
                             var $summernote3 = $('.rate').summernote({
@@ -187,6 +204,11 @@
                             }
                           });
                         </script>
+                        <div class="index-rate">
+                            <h4>首页轮播设置</h4>
+                            <textarea placeholder="请输入费率..." rows="3">{% for content in data %}{% if content.title=='index_rate' %}{{content.content}}{% endif %}{% endfor %}</textarea>
+                        </div>
+                        <button class="btn btn-danger post-rate">保存设置</button>
                     </div>
                 </div>
             </div>
@@ -215,17 +237,28 @@
           content: $('.about_site').summernote('code')
         },
         dataType: 'json',
-        success: function (data) {
-          sweetAlert({
-            title: data.message,
-            type: 'success',
-            showCancelButton: false,
-            confirmButtonColor: "#0083ff",
-            confirmButtonText: "确定",
-            closeOnConfirm: false
-          });
+        success: function () {
+          $.ajax({
+            type: 'post',
+            url: '/content/content_save',
+            data: {
+              title: 'index_about_site',
+              content: $('.index-about_site textarea').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+              sweetAlert({
+                title: data.message,
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: "#0083ff",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+              })
+            }
+          })
         }
-      });
+      })
     });
 
     $('.post-site_theory').click(function () {
@@ -237,17 +270,28 @@
           content: $('.site_theory').summernote('code')
         },
         dataType: 'json',
-        success: function (data) {
-          sweetAlert({
-            title: data.message,
-            type: 'success',
-            showCancelButton: false,
-            confirmButtonColor: "#0083ff",
-            confirmButtonText: "确定",
-            closeOnConfirm: false
-          });
+        success: function () {
+          $.ajax({
+            type: 'post',
+            url: '/content/content_save',
+            data: {
+              title: 'index_site_theory',
+              content: $('.index-site_theory textarea').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+              sweetAlert({
+                title: data.message,
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: "#0083ff",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+              })
+            }
+          })
         }
-      });
+      })
     });
 
     $('.post-rate').click(function () {
@@ -259,15 +303,26 @@
           content: $('.rate').summernote('code')
         },
         dataType: 'json',
-        success: function (data) {
-          sweetAlert({
-            title: data.message,
-            type: 'success',
-            showCancelButton: false,
-            confirmButtonColor: "#0083ff",
-            confirmButtonText: "确定",
-            closeOnConfirm: false
-          });
+        success: function () {
+          $.ajax({
+            type: 'post',
+            url: '/content/content_save',
+            data: {
+              title: 'index_rate',
+              content: $('.index-rate textarea').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+              sweetAlert({
+                title: data.message,
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: "#0083ff",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+              })
+            }
+          })
         }
       });
     });

@@ -14,6 +14,13 @@
     .form-control {
         color: #555 !important;
     }
+    input[type='radio'] {
+        width: 18px;
+        height: 18px;
+    }
+    .cparent {
+        font-size: 14px;
+    }
 </style>
 {% endblock %}
 
@@ -32,7 +39,7 @@
                         <div class=" form">
                             <form class="cmxform form-horizontal tasi-form" id="commentForm" method="get" action="#">
                                 <div class="form-group ">
-                                    <label for="came" class="control-label col-lg-2">分类名 (必填项)</label>
+                                    <label for="cname" class="control-label col-lg-2">分类名 (必填项)</label>
                                     <div class="col-lg-10">
                                         <input class="form-control" id="cname" name="name" minlength="2" type="text" required />
                                     </div>
@@ -41,6 +48,13 @@
                                     <label for="cdescription" class="control-label col-lg-2">分类描述 (必填项)</label>
                                     <div class="col-lg-10">
                                         <textarea class="form-control " id="cdescription" name="description" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">分类父级 (必选项)</label>
+                                    <div class="col-lg-10 cparent">
+                                        <input type="radio" name="cparent" value="investment" checked="checked"> 投资产品
+                                        <input type="radio" name="cparent" value="insurance"> 保险产品
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -81,7 +95,8 @@
         data: {
           name: $.trim($('#cname').val()),
           description: $.trim($('#cdescription').val()),
-          sort: 'product'
+          sort: 'product',
+          parent: $("input[name='cparent']:checked").val()
         },
         dataType: 'json',
         success: function (data) {

@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const Content = require('../models/content');
+var Content = require('../models/content');
 
 var responseData=null;
 router.use(function(req,res,next){

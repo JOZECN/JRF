@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const News = require('../models/news');
-const Category = require('../models/category');
+var News = require('../models/news');
+var Category = require('../models/category');
 
 /*  main  */
 

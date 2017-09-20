@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const newsSchema = require('../schemas/news');
+var mongoose = require('mongoose');
+var newsSchema = require('../schemas/news');
 
 mongoose.Promise = global.Promise;
 module.exports = mongoose.model('News',newsSchema);

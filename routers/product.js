@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const Product = require('../models/product');
-const Category = require('../models/category');
+var Product = require('../models/product');
+var Category = require('../models/category');
 
 var responseData=null;
 router.use(function(req,res,next){
@@ -16,7 +16,9 @@ router.use(function(req,res,next){
 /*  main  */
 
 router.get('/', function(req,res,next){
-  Product.find().populate(['category','user']).then(function (product) {
+  var type=req.query.type;
+
+  Product.find().populate(['category']).then(function (product) {
     Category.find().then(function (category) {
       res.render('main/product', {
         userInfo:req.session.user,
@@ -89,6 +91,7 @@ router.post('/product_add',function(req,res,next){
       dealline:req.body.dealline,
       qualify:req.body.qualify,
       area:req.body.area,
+      term:req.body.term,
       image: req.body.image,
       date:new Date().toDateString(),
       user:req.body.user,
@@ -152,6 +155,7 @@ router.post('/product_edit',function(req,res,next){
           dealline:req.body.dealline,
           qualify:req.body.qualify,
           area:req.body.area,
+          term:req.body.term,
           image: req.body.image,
           date:new Date().toDateString(),
           user:req.body.user,

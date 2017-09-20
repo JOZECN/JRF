@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 var responseData=null;
 router.use(function(req,res,next){
@@ -74,10 +74,6 @@ router.get('/invoice', function(req,res,next){
   res.render('admin/invoice');
 });
 
-/*router.get('/layout', function(req,res,next){
-  res.render('admin/layout');
-});*/
-
 router.get('/login', function(req,res,next){
   res.render('admin/login');
 });
@@ -102,28 +98,28 @@ router.get('/widget', function(req,res,next){
   res.render('admin/widget');
 });
 
-const Question=require('../models/question');
-const Answer=require('../models/answer');
+var Question=require('../models/question');
+var Answer=require('../models/answer');
 
-const User=require('../models/user');
+var User=require('../models/user');
 renderAdminTable(User,'user_list',10);
 
-const Category=require('../models/category');
+var Category=require('../models/category');
 renderAdminTable(Category,'product_category_list',100);
 renderAdminTable(Category,'news_category_list',100);
 
-const Product = require('../models/product');
+var Product = require('../models/product');
 renderAdminTable(Product,'product_list',10000,['category','user']);
 
-const News = require('../models/news');
+var News = require('../models/news');
 renderAdminTable(News,'news_list',10000,['category','user']);
 
-const Slide = require('../models/slide');
+var Slide = require('../models/slide');
 renderAdminTable(Slide,'slide_config',10,['product']);
 
-const Content = require('../models/content');
+var Content = require('../models/content');
 renderAdminTable(Content,'about_us',3);
-renderAdminTable(Content,'about_site',3);
+renderAdminTable(Content,'about_site',6);
 renderAdminTable(Content,'user_agreement',3);
 renderAdminTable(Content,'faq',3);
 
@@ -227,7 +223,6 @@ router.get('/question_list',function(req,res,next){
     Answer.find().populate(['product']).then(function (answer) {
       data.answer = answer;
     }).then(function () {
-      console.log(data);
       res.render('admin/question_list', data);
     })
   })
@@ -293,6 +288,12 @@ router.get('/answer_edit', function(req,res,next){
   })
 });
 
+router.get('/site_config', function(req,res,next){
+  res.render('admin/site_config',{
+    userInfo:req.session.user
+  })
+});
+
 /*  function for admin data  */
 
 function renderAdminTable(obj,type,limit,_query){
@@ -311,7 +312,7 @@ function renderAdminTable(obj,type,limit,_query){
       if(type=='about_us'){
         var newObj = _query ? obj.find({"$or":[{"title":"about_company"},{"title":"contact_us"},{"title":"join_us"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"about_company"},{"title":"contact_us"},{"title":"join_us"}]}).sort({_id: -1}).limit(limit).skip(skip);
       }else if(type=='about_site'){
-        var newObj = _query ? obj.find({"$or":[{"title":"about_site"},{"title":"site_theory"},{"title":"rate"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"about_site"},{"title":"site_theory"},{"title":"rate"}]}).sort({_id: -1}).limit(limit).skip(skip);
+        var newObj = _query ? obj.find({"$or":[{"title":"about_site"},{"title":"index_about_site"},{"title":"site_theory"},{"title":"index_site_theory"},{"title":"rate"},{"title":"index_rate"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"about_site"},{"title":"index_about_site"},{"title":"site_theory"},{"title":"index_site_theory"},{"title":"rate"},{"title":"index_rate"}]}).sort({_id: -1}).limit(limit).skip(skip);
       }else if(type=='user_agreement'){
         var newObj = _query ? obj.find({"$or":[{"title":"regulation"},{"title":"protect"},{"title":"term"}]}).sort({_id: -1}).limit(limit).skip(skip).populate(_query) : obj.find({"$or":[{"title":"regulation"},{"title":"protect"},{"title":"term"}]}).sort({_id: -1}).limit(limit).skip(skip);
       }else if(type=='faq'){
@@ -368,16 +369,31 @@ router.post('/category_add',function(req,res,next){
       res.json(responseData);
       return;
     }else{
-      new Category({
-        name: name,
-        description: description,
-        sort: sort
-      }).save().then(function () {
-        responseData.code=0;
-        responseData.message='添加成功！';
-        res.json(responseData);
-        return;
-      });
+      if(sort=='product') {
+        new Category({
+          name: name,
+          description: description,
+          sort: sort,
+          parent: req.body.parent
+        }).save().then(function () {
+          responseData.code=0;
+          responseData.message='添加成功！';
+          res.json(responseData);
+          return;
+        })
+      }
+      else {
+        new Category({
+          name: name,
+          description: description,
+          sort: sort
+        }).save().then(function () {
+          responseData.code=0;
+          responseData.message='添加成功！';
+          res.json(responseData);
+          return;
+        });
+      }
     }
   })
 });
@@ -411,13 +427,25 @@ router.post('/category_edit',function(req,res,next){
       res.json(responseData);
       return;
     } else {
-      return Category.update({
-        _id: id
-      }, {
-        name: name,
-        description: description,
-        sort: sort
-      });
+      if(sort=='product'){
+        return Category.update({
+          _id: id
+        }, {
+          name: name,
+          description: description,
+          sort: sort,
+          parent: req.body.parent
+        })
+      }
+      else {
+        return Category.update({
+          _id: id
+        }, {
+          name: name,
+          description: description,
+          sort: sort
+        })
+      }
     }
   }).then(function () {
     responseData.code = 0;

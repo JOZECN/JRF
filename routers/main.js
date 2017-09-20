@@ -1,25 +1,28 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 /*  router for main page  */
 
-const Content = require('../models/content');
+var Content = require('../models/content');
 renderAdminTable(Content,'about',12);
 
-const Slide = require('../models/slide');
-const News = require('../models/news');
-const Question = require('../models/question');
-const Category = require('../models/category');
+var Slide = require('../models/slide');
+var News = require('../models/news');
+var Question = require('../models/question');
+var Category = require('../models/category');
 
 router.get('/', function(req,res,next){
   Slide.find().populate(['product']).then(function (slide) {
     News.find().populate(['category']).then(function (news) {
       Category.find({sort:'news'}).then(function (newsCategory) {
-        res.render('main/index',{
-          userInfo: req.session.user,
-          slide: slide,
-          news: news,
-          newsCategory: newsCategory
+        Content.find().then(function (content) {
+          res.render('main/index',{
+            userInfo: req.session.user,
+            slide: slide,
+            news: news,
+            newsCategory: newsCategory,
+            content: content
+          })
         })
       })
     })

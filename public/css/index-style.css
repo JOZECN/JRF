@@ -1,0 +1,125 @@
+@media screen and (max-width: 640px) {
+  .hero h1 {
+    font-size: 2.5em;
+  }
+  .hero h3 {
+    font-size: 1.5em;
+  }
+}
+
+
+.product-sort {
+  padding: 0;
+  overflow: hidden;
+}
+.product-sort img {
+  width: 100%;
+  height: auto;
+}
+.product-sort-cover {
+  width: 100%;
+  height: 50%;
+  padding: 2% 10px;
+  background-color: rgba(17, 17, 17, 0.5);
+  color: #FFFFFF;
+  position: absolute;
+  top: 80%;
+}
+.product-sort-cover p {
+  color: #ffffff;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.product-sort-description {
+  opacity: 0;
+  font-size: 20px;
+}
+@media only screen and (max-width: 1200px) {
+  .product-sort-cover p {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  .product-sort-description {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 1650px) {
+  .product-sort-cover p {
+    margin-top: 0;
+  }
+  .product-sort-description {
+    font-size: 14px;
+  }
+}
+
+
+.work_area .tab-content .new-list {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.work_area .tab-content .new-list .new-list-item {
+  list-style: none;
+  width: 100%;
+  font-size: 18px;
+}
+.work_area .tab-content .new-list a {
+  display: block;
+  padding: 15px 0;
+}
+.work_area .tab-content .new-list a:hover {
+  color: #da7464;
+}
+.work_area .tab-content .new-list .new-list-item i {
+  margin-right: 5px;
+  font-size: 20px;
+}
+.work_area .tab-content .new-list .new-list-item .new-title {
+
+}
+.work_area .tab-content .new-list .new-list-item .new-data {
+  float: right;
+}
+
+
+.market-session-title h1 {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.market-session-title span {
+  color: #e95a44;
+}
+.shares {
+  padding: 15px;
+}
+.shares img {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+.shares-block {
+  width: 100%;
+  background-color: #F5F6FA;
+  transition: all .5s ease-in-out;
+}
+.shares-block:hover {
+  color: #F5F6FA;
+  background-color: #e95a44;
+}
+.shares-block .market-data {
+  padding: 10px 40px;
+  text-align: left;
+  display: block;
+}
+.shares-block .market-data p {
+  margin-top: 10px;
+}
+.shares-block .market-data span {
+  margin: 0;
+  float: right;
+}
+.shares-block .market-name {
+  font-size: 20px;
+  text-align: center;
+}

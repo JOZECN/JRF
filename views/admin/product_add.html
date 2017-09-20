@@ -104,6 +104,12 @@
                                         <input class=" form-control" id="parea" name="area" type="text" />
                                     </div>
                                 </div>
+                                <div class="form-group ">
+                                    <label for="pterm" class="control-label col-lg-2">产品条款 (必填项)</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control " id="pterm" name="term" required></textarea>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="pimage" class="control-label col-lg-2">产品图片<br>(小于500k)</label>
                                     <div class="col-lg-10">
@@ -161,6 +167,7 @@
           dealline: $.trim($('#pdealline').val()),
           qualify: $.trim($('#pqualify').val()),
           area: $.trim($('#parea').val()),
+          term: $.trim($('#pterm').val()),
           image: $('.productImage').attr('src'),
           user: '{{userInfo._id.toString()}}'
         },

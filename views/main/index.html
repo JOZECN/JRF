@@ -2,17 +2,12 @@
 
 {% block slide %}
 <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="50000" id="bs-carousel">
-    <!-- Overlay -->
-    <!--<div class="overlay"></div>-->
-
-    <!-- Indicators -->
     <ol class="carousel-indicators">
         {% for slide in slide %}
         <li data-target="#bs-carousel" data-slide-to="{{loop.index0}}"{% if loop.first %} class="active"{% endif %}></li>
         {% endfor %}
     </ol>
 
-    <!-- Wrapper for slides -->
     <div class="carousel-inner">
         {% for slide in slide %}
         <div class="item slides{% if loop.first %} active{% endif %}" style="background-color: #000000">
@@ -26,80 +21,35 @@
         {% endfor %}
     </div>
 </div>
-<style type="text/css">
-    @media screen and (max-width: 640px) {
-        .hero h1 {
-            font-size: 2.5em;
-        }
-        .hero h3 {
-            font-size: 1.5em;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block main %}
+<link rel="stylesheet" href="../../public/css/index-style.css">
+
 <div class="row wow bounceInRight" style="padding: 0;">
-    <a href="/product"><div class="col-sm-4 hot-recommand">
+    <a href="/product"><div class="col-sm-4 product-sort">
         <img src="../../public/img/1.jpg" alt="">
-        <div class="hot-recommand-cover">
-            <h2>投资产品</h2>
-            <span>由商业银行和正规金融机构自行设计并发行，将募集到的资金根据产品合同约定投入相关金融市场及购买相关金融产品</span>
+        <div class="product-sort-cover">
+            <p>投资产品</p>
+            <span class="product-sort-description">由商业银行和正规金融机构自行设计并发行，将募集到的资金根据产品合同约定投入相关金融市场及购买相关金融产品</span>
         </div>
     </div></a>
-    <a href="/product"><div class="col-sm-4 hot-recommand">
+    <a href="/product"><div class="col-sm-4 product-sort">
         <img src="../../public/img/2.jpg" alt="">
-        <div class="hot-recommand-cover">
-            <h2>保险产品</h2>
-            <span>由保险人提供给保险市场的，能够引起人们注意、购买，从而满足人们减少风险和转移风险，必要时能得到一定的经济补偿需要的承诺性组合。</span>
+        <div class="product-sort-cover">
+            <p>保险产品</p>
+            <span class="product-sort-description">由保险人提供给保险市场的，能够引起人们注意、购买，从而满足人们减少风险和转移风险，必要时能得到一定的经济补偿需要的承诺性组合。</span>
         </div>
     </div></a>
-    <a href="/product"><div class="col-sm-4 hot-recommand">
+    <a href="/product"><div class="col-sm-4 product-sort">
         <img src="../../public/img/3.jpg" alt="">
-        <div class="hot-recommand-cover">
-            <h2>开信海外</h2>
-            <span>XXXXXXXXXXXXXXXXXXXXXXX</span>
+        <div class="product-sort-cover">
+            <p>开信海外</p>
+            <span class="product-sort-description">开信财富拥有专业、资深的理财规划师团队，大部分理财顾问具有银行、证券、信托、保险等金融机构从业经验和专业背景。</span>
         </div>
     </div></a>
 </div>
-<style rel="stylesheet" type="text/css">
-    .hot-recommand {
-        padding: 0;
-        overflow: hidden;
-    }
-    .hot-recommand img {
-        width: 100%;
-        height: auto;
-    }
-    .hot-recommand-cover {
-        width: 100%;
-        height: 50%;
-        padding: 1% 10px;
-        background-color: rgba(17, 17, 17, 0.5);
-        color: #FFFFFF;
-        position: absolute;
-        top: 80%;
-    }
-    .hot-recommand-cover h2 {
-        color: #ffffff;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    @media only screen and (max-width: 1024px) {
-        .hot-recommand-cover h2 {
-            margin-top: 0;
-        }
-    }
-</style>
-<script type="text/javascript">
-    $(function () {
-      $('.hot-recommand').hover(function () {
-        $(this).children('.hot-recommand-cover').animate({top: '50%'}, "slow");
-      },function () {
-        $(this).children('.hot-recommand-cover').animate({top: '80%'}, "slow");
-      })
-    })
-</script>
+<script type="text/javascript" src="../../public/js/index.js"></script>
 
 <div class="getit_area">
     <div class="container">
@@ -184,36 +134,6 @@
         </div>
     </div>
 </div><!-- work area end   -->
-<style type="text/css">
-    .work_area .tab-content .new-list {
-        padding: 0;
-        margin: 0;
-        text-align: left;
-    }
-    .work_area .tab-content .new-list .new-list-item {
-        list-style: none;
-        width: 100%;
-        font-size: 18px;
-    }
-    .work_area .tab-content .new-list a {
-        display: block;
-        padding: 15px 0;
-    }
-    .work_area .tab-content .new-list a:hover {
-        color: #da7464;
-    }
-    .work_area .tab-content .new-list .new-list-item i {
-        margin-right: 5px;
-        font-size: 20px;
-    }
-    .work_area .tab-content .new-list .new-list-item .new-title {
-
-    }
-    .work_area .tab-content .new-list .new-list-item .new-data {
-        float: right;
-    }
-</style>
-
 
 <div class="row market">
     <div class="col-sm-12 market-session-title">
@@ -259,48 +179,6 @@
         </div>
     </div>
 </div>
-<style rel="stylesheet" type="text/css">
-    .market-session-title h1 {
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-    .market-session-title span {
-        color: #e95a44;
-    }
-    .shares {
-        padding: 15px;
-    }
-    .shares img {
-        width: 100%;
-        height: auto;
-        background-color: #ffffff;
-    }
-    .shares-block {
-        width: 100%;
-        background-color: #F5F6FA;
-        transition: all .5s ease-in-out;
-    }
-    .shares-block:hover {
-        color: #F5F6FA;
-        background-color: #e95a44;
-    }
-    .shares-block .market-data {
-        padding: 10px 40px;
-        text-align: left;
-        display: block;
-    }
-    .shares-block .market-data p {
-        margin-top: 10px;
-    }
-    .shares-block .market-data span {
-        margin: 0;
-        float: right;
-    }
-    .shares-block .market-name {
-        font-size: 20px;
-        text-align: center;
-    }
-</style>
 
 <script type="text/javascript" src="http://hq.sinajs.cn/list=s_sh000001" charset="gb2312">
 </script>
@@ -335,7 +213,6 @@
   $('.shares-block .data3 .market-current-turnover').text(elements[5]);
 </script>
 
-
 <div class="testimonial_area">
     <div class="container">
         <div class="row">
@@ -344,37 +221,27 @@
                 <div id="testimonial_carosule" class="owl-carousel owl-theme">
                     <div class="item">
                         <blockquote>
-                            <!--<img src="http://image.sinajs.cn/newchart/daily/n/sh000001.gif">-->
                             <h2>平台简介</h2>
-                            <p>
-                                开信财富（www.jrfp2f.com）是广州开银投资咨询有限公司旗下的互联网金融平台，是国内领先的个人对个人借贷、理财平台，以个人对个人（P2P），个人对金融机构（P2F）的方式解决借贷双方的借款需求及理财需求。
-                            </p>
+                            <p>{% for content in content %}{% if content.title=='index_about_site' %}{{content.content}}{% endif %}{% endfor %}</p>
                         </blockquote>
                     </div>
                     <div class="item">
                         <blockquote>
-                            <!--<img src="../../public/img/tm1.png">-->
                             <h2>平台原理</h2>
+                            <p>{% for content in content %}{% if content.title=='index_about_theory' %}{{content.content}}{% endif %}{% endfor %}</p>
                         </blockquote>
                     </div>
                     <div class="item">
                         <blockquote>
-                            <!--<img src="../../public/img/tm1.png">-->
                             <h2>投资费率</h2>
-                            <p>
-                                账户管理费
-                                对于投资用户，免收管理费。
-                                充值提现费用（由第三方平台收取）
-                                对于投资用户，免收管理费，相关费用由平台承担。
-                            </p>
+                            <p>{% for content in content %}{% if content.title=='index_rate' %}{{content.content}}{% endif %}{% endfor %}</p>
                         </blockquote>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div><!-- testimonial area end   -->
-
+</div>
 {% endblock %}
 
 {% block footer %}
