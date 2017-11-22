@@ -23,7 +23,7 @@ app.use(session({
   cookie: { maxAge: 60 * 60 * 1000 },
 
   store: new MongoStore({
-    url: 'mongodb://kxcf:kxcfkxcf@localhost:27017/jrf'
+    url: 'mongodb://kxcf:kxcfkxcf@localhost:27018/jrf'
   }),
 
   resave: false,
@@ -66,11 +66,11 @@ app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://kxcf:kxcfkxcf@localhost:27017/jrf', {useMongoClient:true}, function(err){
+mongoose.connect('mongodb://kxcf:kxcfkxcf@localhost:27018/jrf', {useMongoClient:true}, function(err){
   if(err){
     console.log('mongodb connect failed!');
   }else{
     console.log('mongodb connect success!');
-    app.listen(3000);
+    app.listen(8088);
   }
 });

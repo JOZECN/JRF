@@ -71,6 +71,6 @@ mongoose.connect('mongodb://kxcf:kxcfkxcf@localhost:27018/jrf', {useMongoClient:
     console.log('mongodb connect failed!');
   }else{
     console.log('mongodb connect success!');
-    app.listen(3000);
+    app.listen(8088);
   }
 });
